@@ -1,0 +1,325 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Stream Connector - Streamer.bot Integration</title>
+
+<style>
+:root { color-scheme: light dark; }
+
+body {
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  line-height: 1.55;
+  max-width: 1100px;
+  margin: 32px auto;
+  padding: 0 16px;
+}
+
+h1, h2, h3 { margin-top: 1.4em; }
+
+pre, code {
+  background: #111;
+  color: #eee;
+  padding: 6px 8px;
+  border-radius: 6px;
+}
+
+pre { overflow-x: auto; }
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 16px 0;
+}
+
+th, td {
+  border: 1px solid rgba(127,127,127,.35);
+  padding: 8px;
+}
+
+.docs-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+  align-items: center;
+  padding: 12px 14px;
+  margin-bottom: 20px;
+  border: 1px solid rgba(127,127,127,.35);
+  border-radius: 12px;
+  background: rgba(30,30,30,.6);
+  backdrop-filter: blur(6px);
+}
+
+.docs-nav a {
+  padding: 6px 10px;
+  border-radius: 8px;
+  text-decoration: none;
+  color: inherit;
+  border: 1px solid transparent;
+}
+
+.docs-nav a:hover {
+  background: rgba(100,100,100,.2);
+  border-color: rgba(127,127,127,.35);
+}
+
+.back-btn {
+  position: fixed;
+  bottom: 24px;
+  padding: 10px 14px;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 10px;
+  border: 1px solid rgba(127,127,127,.35);
+  background: rgba(20,20,20,.9);
+  color: #fff;
+  text-decoration: none;
+  backdrop-filter: blur(6px);
+  transition: all .15s ease;
+  z-index: 9999;
+}
+
+.back-home { left: 24px; }
+.back-top { right: 24px; }
+
+.back-btn:hover {
+  background: rgba(80,80,80,.9);
+  transform: translateY(-2px);
+}
+
+hr {
+  border: 0;
+  border-top: 1px solid rgba(127,127,127,.35);
+  margin: 28px 0;
+}
+</style>
+</head>
+
+<body>
+
+<nav class="docs-nav">
+  <strong>Docs</strong>
+  <a href="index.html">Home</a>
+  <a href="README.html">Overview</a>
+  <a href="Installation.html">Install</a>
+  <a href="Features.html">Features</a>
+  <a href="File-Structure.html">File Structure</a>
+  <a href="Security-&-Network-Architecture.html">Security</a>
+  <a href="Changelog.html">Changelog</a>
+</nav>
+
+<a href="index.html" class="back-btn back-home">⬅ Back</a>
+<a href="#top" class="back-btn back-top">⬆ Top</a>
+
+<h1 id="top">🤖 Streamer.bot Integration</h1>
+
+<p>
+Stream Connector includes a <strong>native, first-class integration</strong> with Streamer.bot.
+No plugins. No middleware. No duct tape.
+</p>
+
+<p>
+It listens locally, parses events safely, and executes only what you explicitly allow.
+</p>
+
+<hr />
+
+<h2>🔌 Connection Overview</h2>
+
+<table>
+<tr><th>Protocol</th><td>WebSocket</td></tr>
+<tr><th>Address</th><td><code>ws://127.0.0.1:8080</code></td></tr>
+<tr><th>Direction</th><td>Local only</td></tr>
+<tr><th>Source</th><td>Streamer.bot</td></tr>
+<tr><th>Mode</th><td>Subscribe → Receive → Execute</td></tr>
+<tr><th>Auth</th><td>None (localhost boundary)</td></tr>
+</table>
+
+<p>
+No internet exposure.  
+No remote access.  
+No funny business.
+</p>
+
+<hr />
+
+<h2>📡 Subscription Model</h2>
+
+<p>
+Stream Connector subscribes to Streamer.bot’s <strong>Custom Events</strong> channel.
+</p>
+
+<pre><code>{
+  "request": "Subscribe",
+  "id": "streamconnector-sub",
+  "events": {
+    "General": ["Custom"]
+  }
+}</code></pre>
+
+<p>
+Only events explicitly sent by Streamer.bot are processed.
+</p>
+
+<hr />
+
+<h2>🧱 Event Schema</h2>
+
+<p>All events are normalized before execution:</p>
+
+<pre><code>{
+  "provider": "string",
+  "commandId": "string",
+  "context": { }
+}</code></pre>
+
+<p>
+No eval.  
+No dynamic execution.  
+No surprises.
+</p>
+
+<hr />
+
+<h2>🧩 Supported Event Types</h2>
+
+<h3>🔹 External Hook</h3>
+<ul>
+  <li>provider</li>
+  <li>commandId</li>
+  <li>context</li>
+</ul>
+
+<h3>🔹 Twitch Chat</h3>
+<ul>
+  <li>user</li>
+  <li>message</li>
+</ul>
+
+<h3>🔹 Twitch Subscription</h3>
+<ul>
+  <li>user</li>
+  <li>tier</li>
+  <li>months</li>
+  <li>is_gift</li>
+</ul>
+
+<h3>🔹 Twitch Cheer</h3>
+<ul>
+  <li>user</li>
+  <li>bits</li>
+</ul>
+
+<h3>🔹 OBS Events</h3>
+<ul>
+  <li>scene</li>
+</ul>
+
+<h3>🔹 Timer / Button Events</h3>
+<ul>
+  <li>timer</li>
+  <li>button</li>
+</ul>
+
+<hr />
+
+<h2>🔁 Execution Flow</h2>
+
+<pre><code>
+Streamer.bot
+   ↓
+WebSocket Event
+   ↓
+Validation
+   ↓
+Typed Parser
+   ↓
+execute_external_hook()
+   ↓
+Stream Connector Core
+</code></pre>
+
+<hr />
+
+<h2>⚙️ Execution Hook</h2>
+
+<pre><code>
+execute_external_hook(
+  provider,
+  command_id,
+  context
+)
+</code></pre>
+
+<p>
+This is where:
+</p>
+
+<ul>
+  <li>Chains fire</li>
+  <li>Devices trigger</li>
+  <li>OSC messages send</li>
+  <li>Automation happens</li>
+</ul>
+
+<hr />
+
+<h2>🔐 Security Model</h2>
+
+<ul>
+  <li>✔ Local-only WebSocket</li>
+  <li>✔ No inbound internet access</li>
+  <li>✔ Typed payloads only</li>
+  <li>✔ No eval / exec</li>
+  <li>✔ Graceful failure handling</li>
+</ul>
+
+<hr />
+
+<h2>🔁 Reconnection Handling</h2>
+
+<ul>
+  <li>Automatic reconnect</li>
+  <li>Exponential backoff</li>
+  <li>No duplicate subscriptions</li>
+  <li>Safe re-init on reconnect</li>
+</ul>
+
+<hr />
+
+<h2>🛡️ Safety Guarantees</h2>
+
+<ul>
+  <li>No remote execution</li>
+  <li>No hidden listeners</li>
+  <li>No telemetry</li>
+  <li>No background network chatter</li>
+  <li>Explicit execution only</li>
+</ul>
+
+<hr />
+
+<h2>✅ Summary</h2>
+
+<p>
+The Streamer.bot integration is:
+</p>
+
+<ul>
+  <li>Local</li>
+  <li>Deterministic</li>
+  <li>Safe</li>
+  <li>Fast</li>
+  <li>Built for automation without chaos</li>
+</ul>
+
+<p>
+If it fires - you told it to.  
+If it runs - you authorized it.
+</p>
+
+<hr />
+
+</body>
+</html>

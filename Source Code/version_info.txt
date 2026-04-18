@@ -1,0 +1,40 @@
+VSVersionInfo(
+    ffi=FixedFileInfo(
+        filevers=(6, 3, 0, 0),
+        prodvers=(6, 3, 0, 0),
+        mask=0x3F,
+        flags=0x0,
+        OS=0x40005,
+        fileType=0x1,
+        subtype=0x0,
+        date=(0, 0)
+    ),
+    kids=[
+        StringFileInfo(
+            kids=[
+                StringTable(
+                    '040904B0',
+                    [
+                        StringStruct('CompanyName',      'Vixen Code Solutions'),
+                        StringStruct('FileDescription',  'Stream Connector'),
+                        StringStruct('FileVersion',      '6.3.0'),
+                        StringStruct('InternalName',     'Stream Connector'),
+                        StringStruct('LegalCopyright',   '©2026 Vixen Code Solutions'),
+                        StringStruct('LegalTrademarks',  'Stream Connector'),
+                        StringStruct('Comments',         'Stable release build'),
+                        StringStruct('OriginalFilename', 'Stream Connector.exe'),
+                        StringStruct('ProductName',      'Stream Connector'),
+												StringStruct('BuildDate',        '2026-01-23'),
+												StringStruct('BuildType',        'Release'),
+                        StringStruct('ProductVersion',   '6.3.0')
+                    ]
+                )
+            ]
+        ),
+        VarFileInfo(
+            kids=[
+                VarStruct('Translation', [1033, 1200])
+            ]
+        )
+    ]
+)

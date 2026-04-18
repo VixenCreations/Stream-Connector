@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Installation</title>
+
+  <style>
+    :root {
+      color-scheme: light dark;
+      --accent: #ff3b3b;
+      --border: rgba(127,127,127,.35);
+    }
+
+    body {
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      line-height: 1.6;
+      max-width: 980px;
+      margin: 32px auto;
+      padding: 0 18px;
+    }
+
+    h1, h2 {
+      margin-top: 2em;
+      border-left: 4px solid var(--accent);
+      padding-left: 12px;
+    }
+
+    ul { margin-left: 1.2em; }
+    li { margin: 0.4em 0; }
+
+    hr {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 32px 0;
+    }
+
+    /* Nav */
+    .docs-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 12px;
+      align-items: center;
+      padding: 12px 14px;
+      margin-bottom: 20px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: rgba(30,30,30,0.6);
+      backdrop-filter: blur(6px);
+    }
+
+    .docs-nav a {
+      padding: 6px 10px;
+      border-radius: 8px;
+      color: inherit;
+      border: 1px solid transparent;
+      text-decoration: none;
+      transition: all 0.15s ease;
+    }
+
+    .docs-nav a:hover {
+      background: rgba(100,100,100,0.2);
+      border-color: var(--border);
+    }
+
+    .back-btn {
+      position: fixed;
+      bottom: 24px;
+      padding: 10px 14px;
+      font-size: 14px;
+      font-weight: 700;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: rgba(20,20,20,0.9);
+      color: #fff;
+      text-decoration: none;
+      backdrop-filter: blur(6px);
+      transition: all 0.15s ease;
+      z-index: 9999;
+    }
+
+    .back-home { left: 24px; }
+    .back-top { right: 24px; }
+
+    .back-btn:hover {
+      background: rgba(80,80,80,0.9);
+      transform: translateY(-2px);
+    }
+  </style>
+</head>
+
+<body>
+
+<nav class="docs-nav">
+  <a href="index.html">Home</a>
+  <a href="README.html">Overview</a>
+  <a href="Installation.html">Install</a>
+  <a href="Features.html">Features</a>
+  <a href="Additional-Uses.html">Additional Uses</a>
+  <a href="Changelog.html">Changelog</a>
+  <a href="Upcoming-Features.html">Upcoming</a>
+  <a href="Extended-Features-Key.html">Extended</a>
+  <a href="File-Structure.html">File Structure</a>
+  <a href="Security-&-Licensing.html">Security</a>
+  <a href="Security-&-Network-Architecture.html">Network</a>
+  <a href="Stream-Connector-Dev-Guide-External-API.html">Dev: API</a>
+  <a href="Stream-Connector-Dev-Guide-Streamerbot.html">Dev: Streamer.bot</a>
+  <a href="FAQ.html">FAQ</a>
+</nav>
+
+<a href="#top" class="back-btn back-top">⬆ Back to Top</a>
+<a href="index.html" class="back-btn back-home">⬅ Home</a>
+
+<h1 id="top">🧩 Installation</h1>
+
+<p>
+This is not a wizard.
+This is not a “next-next-finish” toy.
+</p>
+
+<p>
+This is a real system that expects you to know how to unzip a file and click a button.
+If that sounds scary - stop now.
+</p>
+
+<hr />
+
+<h2>🧾 Requirements</h2>
+
+<ul>
+  <li>Windows 10 or newer</li>
+  <li>Administrator access (for first launch)</li>
+  <li>VRChat (optional, only if using OSC)</li>
+  <li>TikTok account (optional)</li>
+  <li>PiShock / OwO devices (optional)</li>
+</ul>
+
+<hr />
+
+<h2>⬇ Download</h2>
+
+<p>
+Stream Connector is distributed directly.
+No storefronts. No DRM. No middlemen.
+</p>
+
+<p>
+<strong>Download:</strong><br />
+<a href="https://1drv.ms/f/c/d8576d046783ce52/IgAdEale_kHfQ6GGXeLbMXPLAS3Ge8RD_IMKDz7ES-_f2fU?e=5XgVQ2" target="_blank">
+https://1drv.ms/f/c/d8576d046783ce52/…
+</a>
+</p>
+
+<p>
+Download the latest folder, extract it anywhere you want, and run the executable.
+</p>
+
+<hr />
+
+<h2>🚀 First Launch</h2>
+
+<ol>
+  <li>Extract the archive</li>
+  <li>Run <strong>Stream Connector.exe</strong></li>
+  <li>Allow firewall access when prompted</li>
+  <li>Let the app initialize its folders</li>
+</ol>
+
+<p>
+That’s it.
+No activation.
+No login.
+No license key.
+</p>
+
+<hr />
+
+<h2>⚙️ Initial Configuration</h2>
+
+<ol>
+  <li>Open the dropdown menu</li>
+  <li>Select <strong>Configuration</strong></li>
+  <li>Set only what you actually use</li>
+</ol>
+
+<p>
+Optional:
+</p>
+
+<ul>
+  <li>TikTok username (case sensitive)</li>
+  <li>PiShock account + API key</li>
+  <li>OSC (VRChat)</li>
+</ul>
+
+<p>
+If you don’t use something - leave it blank.
+Nothing breaks.
+</p>
+
+<hr />
+
+<h2>🤖 Streamer.bot Integration (Optional)</h2>
+
+<p>
+If you want automation, this is where the magic happens.
+</p>
+
+<ol>
+  <li>Download Streamer.bot  
+    <a href="https://streamer.bot/downloads" target="_blank">https://streamer.bot/downloads</a>
+  </li>
+  <li>Extract and launch it</li>
+  <li>Go to <strong>Servers / Clients → WebSocket Server</strong></li>
+  <li>Start server on <code>127.0.0.1:8080</code></li>
+  <li>Stream Connector will auto-connect</li>
+</ol>
+
+<p>
+You should see:
+</p>
+
+<ul>
+  <li>Connected ✔</li>
+  <li>Subscribed ✔</li>
+  <li>No errors ✔</li>
+</ul>
+
+<hr />
+
+<h2>📦 Importing Example Actions</h2>
+
+<ol>
+  <li>Go to <code>Streamer Kit/Streamerbot Example</code></li>
+  <li>Open the export file</li>
+  <li>Copy everything</li>
+  <li>Paste into Streamer.bot → Import</li>
+  <li>Confirm the warning</li>
+</ol>
+
+<p>
+Yes, it warns you.
+That’s normal.
+That’s security working as intended.
+</p>
+
+<hr />
+
+<h2>✅ Final Notes</h2>
+
+<ul>
+  <li>Everything runs locally</li>
+  <li>No cloud services required</li>
+  <li>No accounts needed</li>
+  <li>No tracking</li>
+</ul>
+
+<p>
+If it breaks, check the logs.
+If something doesn’t fire, you misconfigured it.
+</p>
+
+<p>
+That’s not an insult - that’s how power tools work.
+</p>
+
+<hr />
+
+<p>
+🔥 <strong>Install once. Configure once. Own the system.</strong>
+</p>
+
+</body>
+</html>

@@ -1,0 +1,820 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Stream Connector - Changelog</title>
+
+<style>
+:root { color-scheme: light dark; }
+
+body {
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  line-height: 1.5;
+  max-width: 1100px;
+  margin: 32px auto;
+  padding: 0 16px;
+}
+
+h1 { margin-bottom: 6px; }
+.small { opacity: .75; margin-bottom: 16px; }
+
+.search {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(127,127,127,.35);
+  margin: 12px 0 18px;
+  font-size: 1rem;
+}
+
+.ver {
+  border: 1px solid rgba(127,127,127,.25);
+  border-radius: 14px;
+  padding: 14px 16px;
+  margin: 12px 0;
+}
+
+.ver h2 {
+  margin: 0 0 10px;
+  display: flex;
+  gap: 10px;
+  align-items: baseline;
+  flex-wrap: wrap;
+}
+
+.badge {
+  font-size: .72rem;
+  padding: 2px 8px;
+  border-radius: 999px;
+  border: 1px solid rgba(127,127,127,.35);
+  opacity: .85;
+}
+
+ul { margin: 8px 0 0 18px; }
+li { margin: 4px 0; }
+
+.docs-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+  align-items: center;
+  padding: 12px 14px;
+  margin-bottom: 20px;
+  border: 1px solid rgba(127,127,127,.35);
+  border-radius: 12px;
+  background: rgba(30,30,30,0.6);
+  backdrop-filter: blur(6px);
+}
+
+.docs-nav a {
+  padding: 6px 10px;
+  border-radius: 8px;
+  color: inherit;
+  text-decoration: none;
+  border: 1px solid transparent;
+  transition: all .15s ease;
+}
+
+.docs-nav a:hover {
+  background: rgba(100,100,100,0.2);
+  border-color: rgba(127,127,127,.35);
+}
+
+.back-btn {
+  position: fixed;
+  bottom: 24px;
+  padding: 10px 14px;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 10px;
+  border: 1px solid rgba(127,127,127,.35);
+  background: rgba(20,20,20,.9);
+  color: #fff;
+  text-decoration: none;
+  backdrop-filter: blur(6px);
+  transition: all .15s ease;
+  z-index: 9999;
+}
+
+.back-home { left: 24px; }
+.back-top { right: 24px; }
+
+.back-btn:hover {
+  background: rgba(80,80,80,.9);
+  transform: translateY(-2px);
+}
+
+footer {
+  margin: 28px 0 10px;
+  opacity: .7;
+  font-size: .9rem;
+}
+</style>
+</head>
+
+<body>
+
+<nav class="docs-nav">
+  <strong>Docs</strong>
+  <a href="index.html">Home</a>
+  <a href="README.html">Overview</a>
+  <a href="Installation.html">Install</a>
+  <a href="Features.html">Features</a>
+  <a href="File-Structure.html">File Structure</a>
+  <a href="Security-&-Network-Architecture.html">Security</a>
+  <a href="Changelog.html">Changelog</a>
+</nav>
+
+<a href="index.html" class="back-btn back-home">⬅ Back</a>
+<a href="#top" class="back-btn back-top">⬆ Top</a>
+
+<h1 id="top">📜 Stream Connector - Changelog</h1>
+<div class="small">
+  Loaded from <code>/saved/changelogs/version.json</code> (embedded)
+</div>
+
+<input id="q" class="search" placeholder="Search changelog…" />
+
+<div id="log"></div>
+
+<footer>
+  Local documentation • Offline safe • No telemetry • No cloud
+</footer>
+
+<script>
+const CHANGELOG = {
+	"6.2.3": [
+		"FEATURE: Advanced weighted PiShock device randomization engine added with per-device bias control.",
+		"FEATURE: Support added for pishock_random_min / pishock_random_max device selection ranges.",
+		"FEATURE: No-repeat window support added for PiShock random routing (pishock_random_no_repeat_s).",
+		"FEATURE: Core device selection logic centralized for all execution paths (standalone, hybrid, random, queue).",
+		"FEATURE: Broker error escalation system added with user-facing diagnostics and cooldown handling.",
+		"FEATURE: Support popup system hardened with reentrancy guards and cooldown suppression.",
+		"FEATURE: Global PiShock busy-gate now enforced across all parallel and non-blocking execution paths.",
+
+		"BUGFIX: Fixed inline randomization causing duplicate device dispatch under concurrent execution.",
+		"BUGFIX: Fixed race conditions from shallow device list copies in threaded PiShock paths.",
+		"BUGFIX: Fixed intermittent 'no valid device IDs' failures during random-trigger chains.",
+		"BUGFIX: Fixed PiShock parallel helper spawning ghost workers under high concurrency.",
+		"BUGFIX: Fixed queue worker starvation caused by double-blocking duration sleeps.",
+		"BUGFIX: Fixed hybrid chains incorrectly re-randomizing devices mid-execution.",
+		"BUGFIX: Fixed PiShock-only random loops leaking shared mutable device state.",
+		"BUGFIX: Fixed broker connection errors being silently swallowed and ignored.",
+		"BUGFIX: Fixed support popup thread safety issues causing UI instability.",
+		"BUGFIX: Fixed repeated popup spam due to missing reentrancy guards.",
+		"BUGFIX: Fixed chain execution aborts caused by selector signature mismatch.",
+		"BUGFIX: Fixed parallel PiShock threads completing early due to incorrect lifetime enforcement.",
+
+		"UX CHANGE: Support popup now uses cooldown-based suppression instead of permanent disable.",
+		"UX CHANGE: Broker connectivity failures now surface immediately with actionable user guidance.",
+		"UX CHANGE: Chain execution status now accurately reflects true hardware execution state.",
+		"UX CHANGE: Reduced UI lockups during heavy parallel PiShock + OwO + OSC execution.",
+
+		"SECURITY: Removed all inline entropy injection paths to prevent logic manipulation.",
+		"SECURITY: Centralized randomization pipeline hardened against injection and state corruption.",
+		"SECURITY: Parallel execution paths further hardened against race conditions and state bleed.",
+		"SECURITY: Broker error handling tightened to prevent silent execution bypass.",
+		"SECURITY: Additional Anti-Tamper Controls Added to the software.",
+
+		"PERFORMANCE: Reduced lock contention in parallel PiShock dispatch.",
+		"PERFORMANCE: Improved queue worker throughput by eliminating redundant joins and sleeps.",
+		"PERFORMANCE: Optimized weighted random selection algorithm for large device pools.",
+		"PERFORMANCE: Reduced thread churn in random-trigger execution loops.",
+		"PERFORMANCE: Improved overall chain scheduling stability under sustained load.",
+
+		"DEV: Core PiShock device selection engine fully rewritten and normalized.",
+		"DEV: All execution paths (executor, queue worker, random runner, hybrid) unified to a single selector pipeline.",
+		"DEV: Parallel PiShock helper fully refactored for deterministic thread lifecycle management.",
+		"DEV: Broker message handler hardened with structured escalation and gating.",
+		"DEV: Support popup system refactored for strict main-thread UI safety.",
+		"DEV: Removed all legacy inline randomization code paths.",
+		"DEV: Internal state handling normalized to eliminate shared mutable structures.",
+		"DEV: Additional debug instrumentation added to random routing and parallel dispatch.",
+		"DEV: Build pipeline updated to reflect hardened threading and async execution model."
+	],
+	"6.2.2": [
+			"FEATURE: Random PiShock device selection engine added with per-chain and random-trigger support.",
+			"FEATURE: Random device routing fully integrated across standard, hybrid, standalone, and random chain modes.",
+			"FEATURE: Multi-device selection filtering now supports bulk add/remove instead of single-item only.",
+			"FEATURE: Global top-level verbose logger implemented for unified debug output across core systems.",
+			"FEATURE: Chain runner upgraded to support randomized device targeting without breaking priority queue logic.",
+			"FEATURE: Random trigger chains now properly randomize both steps and device targets.",
+			"FEATURE: Queue worker upgraded to support parallel PiShock + OwO + OSC execution without blocking.",
+			"FEATURE: PiShock parallel helper upgraded with random device injection support.",
+			"FEATURE: Executor path upgraded to support random device routing in all standalone and hybrid modes.",
+
+			"BUGFIX: Fixed chain runner only selecting first device instead of full eligible device pool.",
+			"BUGFIX: Fixed random chains incorrectly reusing stale device lists.",
+			"BUGFIX: Fixed PiShock-only chains ignoring selected device filters in some execution paths.",
+			"BUGFIX: Fixed queue worker blocking on PiShock threads in non-blocking modes.",
+			"BUGFIX: Fixed silent failures when random chains were triggered from queue worker thread.",
+			"BUGFIX: Fixed reset-after timers misfiring when random chains were active.",
+			"BUGFIX: Fixed UI desync when deleting multiple filtered controls at once.",
+
+			"UX CHANGE: Filter-out controls now support multi-select operations for faster workflow.",
+			"UX CHANGE: Chain execution status now accurately reflects hybrid + parallel execution states.",
+			"UX CHANGE: Reduced UI freeze during random chain execution by offloading heavy work to worker threads.",
+
+			"SECURITY: Random device selection respects existing license tier enforcement with no bypass paths.",
+			"SECURITY: Parallel execution paths hardened to prevent race conditions during device dispatch.",
+			"SECURITY: Additional Anti-Tamper Controls Added to the software.",
+
+			"PERFORMANCE: Reduced lock contention in chain runner during parallel PiShock + OSC execution.",
+			"PERFORMANCE: Improved queue throughput by eliminating unnecessary thread joins.",
+			"PERFORMANCE: Faster random chain execution with optimized shuffle + dispatch logic.",
+
+			"DEV: Core chain engine fully refactored to support random routing without duplication.",
+			"DEV: Queue worker, executor, and random runner logic unified for consistent behavior.",
+			"DEV: Parallel PiShock helper updated for deterministic thread lifecycle management.",
+			"DEV: Global logger architecture introduced for consistent debug visibility across systems.",
+			"DEV: Expanded PyInstaller hidden-import coverage for threading, asyncio, inspect, concurrent.futures, and random.",
+			"DEV: Build pipeline updated to support new async + threaded execution paths.",
+			"DEV: Internal code paths cleaned and normalized for future logic engine extensions."
+	],
+	"6.2.1": [
+			"FEATURE: Fully encrypted, machine-bound license storage using Fernet cryptography (no plaintext license files).",
+			"FEATURE: Hardware fingerprint binding added to all licenses to prevent cross-system sharing.",
+			"FEATURE: Sealed Gold Trial system with encrypted start date and tamper detection.",
+			"FEATURE: Atomic encrypted license writes with temp-file replace strategy for corruption safety.",
+			"FEATURE: Live license revalidation on config save with immediate tier/flag refresh.",
+			"FEATURE: Production-hardened PyInstaller pipeline with explicit hidden-import coverage for all dynamic modules.",
+			"FEATURE: Custom windowed bootloader support for cleaner startup behavior.",
+			"FEATURE: Full EXE + MSI code signing pipeline with SHA256 + timestamping.",
+			"FEATURE: WiX v4 installer integration with automatic saved/ directory injection.",
+
+			"BUGFIX: Invalid, revoked, or failed license validation no longer falls back to trial mode.",
+			"BUGFIX: Closed trial reset abuse via license file deletion or corruption.",
+			"BUGFIX: Corrupt or tampered license payloads now hard-invalidate instead of recovering.",
+			"BUGFIX: Trial banner no longer appears on licensed systems.",
+			"BUGFIX: TikFinity disconnected spam eliminated via connection state guards.",
+			"BUGFIX: Streamer.bot WebSocket reconnect storms fixed with proper backoff handling.",
+			"BUGFIX: External API dispatch stability improvements and error isolation.",
+			"BUGFIX: Multiple silent crashes resolved in OSC parameter fetching and chain execution.",
+			"BUGFIX: Watchdog + zeroconf runtime crashes resolved in packaged builds.",
+			"BUGFIX: Cryptography module resolution failures fixed in onefile builds.",
+
+			"UX CHANGE: Encrypted license + supporter keys now editable directly from config editor.",
+			"UX CHANGE: License UI now hard-blocks on invalid states with no silent downgrade.",
+			"UX CHANGE: Trial messaging only appears when genuinely applicable.",
+			"UX CHANGE: Cleaner startup flow with reduced boot noise and dialog spam.",
+
+			"SECURITY: Trial abuse vectors fully closed (file deletion, date tampering, machine transfer).",
+			"SECURITY: License tampering now results in permanent invalidation.",
+			"SECURITY: DRM logic now fails closed and silent on any anomaly.",
+
+			"PERFORMANCE: Reduced startup overhead by eliminating redundant license parsing.",
+			"PERFORMANCE: Improved thread safety across TikFinity listener and event dispatch queue.",
+			"PERFORMANCE: Faster chain execution path with reduced lock contention.",
+
+			"DEV: Single-file safe cryptography architecture (no external key files or env dependencies).",
+			"DEV: Expanded hidden-import coverage for TikTokLive, websockets, watchdog, zeroconf, tkinter, PIL, cryptography.",
+			"DEV: Build script hardened for non-standard Python install paths.",
+			"DEV: Improved logging clarity across DRM, TikFinity, external API, and build pipeline."
+	],
+  "6.2.0": [
+    "FEATURE: Introduced dedicated External Integration API server on port 8840 for high-performance external automation.",
+    "FEATURE: Added /api/external/exec endpoint supporting JSON, form, and query payloads for maximum platform compatibility.",
+    "FEATURE: Added /api/external/info and /api/external/list discovery endpoints.",
+    "FEATURE: Unified execution pipeline for HTTP and Streamer.bot events.",
+    "FEATURE: Implemented bot-safe response model (no 4xx on validation errors).",
+    "FEATURE: Full CORS support for OBS Browser, local dashboards, and helper tools.",
+
+    "FEATURE: Fully rewritten Streamer.bot 1.0.x WebSocket listener with correct General → Custom subscription model.",
+    "FEATURE: Added clean reconnect logic with exponential backoff (no reconnect storms).",
+    "FEATURE: Implemented crash containment and defensive parsing on all WebSocket handlers.",
+
+    "FEATURE: Introduced production-grade typed event system.",
+    "FEATURE: Added ExternalHookEvent parser.",
+    "FEATURE: Added TwitchChatEvent parser.",
+    "FEATURE: Added TwitchSubEvent parser.",
+    "FEATURE: Added TwitchCheerEvent parser.",
+    "FEATURE: Added ObsSceneEvent parser.",
+    "FEATURE: Added TimerEvent parser.",
+    "FEATURE: Added ButtonEvent parser.",
+
+    "IMPROVEMENT: Normalized provider namespace handling across all ingress layers.",
+    "IMPROVEMENT: Hardened commandId resolution and routing logic.",
+    "IMPROVEMENT: Context parsing now fault-tolerant with raw fallback support.",
+    "IMPROVEMENT: Structured logging added for all external execution calls.",
+    "IMPROVEMENT: Dedicated external integration log channel added.",
+    "IMPROVEMENT: Clean separation between transport, parsing, and execution layers.",
+
+    "FIX: Corrected Streamer.bot subscription shape mismatch causing silent failures.",
+    "FIX: Resolved WebSocket reconnect storm behavior under disconnect conditions.",
+    "FIX: Fixed malformed payload crashes in custom event handling.",
+    "FIX: Fixed context string parsing edge cases.",
+    "FIX: Fixed duplicate execution edge cases during rapid event bursts.",
+
+    "SECURITY: Enforced loopback-only binding for External Integration API.",
+    "SECURITY: Added input validation for provider and commandId.",
+    "SECURITY: Isolated malformed context payloads to prevent execution corruption.",
+    "SECURITY: Hardened ingress crash containment across all entry points.",
+
+    "UX CHANGE: Upgraded Windows manifest to Per-Monitor v2 DPI awareness for crisp multi-monitor scaling.",
+    "UX CHANGE: Updated application version metadata for clean Windows Explorer display.",
+
+    "PERFORMANCE: External execution pipeline optimized for low-latency routing.",
+    "PERFORMANCE: WebSocket event handling optimized for high-throughput scenarios.",
+    "PERFORMANCE: Reduced overhead in event parsing and dispatch layers.",
+
+    "INTERNAL: Added EVENT_PARSERS registry for centralized typed dispatch.",
+    "INTERNAL: Refactored external execution pipeline for maintainability.",
+    "INTERNAL: Centralized typed event routing layer implemented.",
+    "INTERNAL: Improved separation between business logic and transport layers.",
+
+    "BREAKING: Raw dict event handling is deprecated. All inbound events now pass through typed parsers.",
+    "BREAKING: Streamer.bot events must now include type, provider, and commandId fields or will be ignored."
+  ],
+	"6.1.7": [
+			"FEATURE: Incremental device subscription - only new devices are SUBSCRIBED, preventing duplicate subscriptions and SUBSCRIBE_ERROR spam.",
+			"FEATURE: Improved logging and debugging output for subscription flow (targets, counts, ACKs).",
+			"FEATURE: Added internal tracking (_subscribed_targets) to maintain subscription state between refreshes.",
+			"FEATURE: Added New PiShock Controls Drop Down Menu.",
+			"FEATURE: Fully Overhauled how PiShock Devices are controlled! We now use the same method as PiShocks Website!",
+			"FEATURE: Unified Controls method! You can now throw as many pishocks as you want at it!",
+			"FEATURE: Added New Claim Shared Devices Button, Allowing you to quickly setup devices in software!",
+			"FEATURE: Added new PiShock Quick Test Button, Allowing you to test on the fly!",
+			"FEATURE: Added new PiShock Quick Select Drop Down, Allowing you to select and test on the fly!",
+			
+			"BUGFIX: Corrected device target generation to use only client IDs for SUBSCRIBE (removes legacy user ID appending).",
+			"BUGFIX: Resolved UNSUBSCRIBE issues by ensuring only active subscriptions are cleared, preventing UNSUBSCRIBE_ERROR spam.",
+			"BUGFIX: Updated refresh & subscribe workflow to safely combine owned + shared devices without duplicating targets.",
+			"BUGFIX: Incremental subscription now avoids re-subscribing to previously subscribed devices after share code claims.",
+			"BUGFIX: Fixed session race conditions during device refresh after share code claims.",
+			"HOTFIX: General PiShock WebSocket stability improvements and error handling refinements.",
+			
+			"UX CHANGE: Moved the Clear Que button to the Chain Controls Drop Down.",
+			"UX CHANGE: Moved the Emergerncy Stop button to the PiShock Controls Drop Down.",
+			"UX CHANGE: Added the ability to remove steps in patterns.",
+			"UX CHANGE: Chains will now regrid themselves properly!",
+			"UX CHANGE: Added New Kofi Button! Please consider supporting!",
+			"UX CHANGE: Added New TikTok Button! Please consider giving me a follow!",
+			
+			"PERFORMANCE: PiShock Operations are now Instant!",
+			"PERFORMANCE: Avatar Changes are now Instant!",
+			"PERFORMANCE: GUI Registering is now Instant!",
+			"PERFORMANCE: HUGE Gains on overall Performance! Now 78% More Effiecient!"
+	],
+	"6.1.3": [
+			"FEATURE: Added Clear Queue Button - now you can instantly clear all queued events on demand.",
+			"FEATURE: Emergency Stop Button relocated to the Special Controls Tab for easier access.",
+			"BUGFIX: Emergency Stop Button now reliably kills all sending operations to fully halt the program.",
+			"BUGFIX: Chain Runner execution slightly optimized for faster processing.",
+			"BUGFIX: GUI spawn times improved for smoother interface loading.",
+			"BUGFIX: Search bar fixed - filtering now updates the table correctly and scrolls to top.",
+			"BUGFIX: Chain Editor checkmark selections now behave correctly.",
+			"BUGFIX: PiShock runner smoothing applied for more fluid device control."
+	],
+	"6.1.2": [
+		"FEATURE: Removed old legacy code blocking users from using the software without vrchat.",
+		"BUGFIX: Fixed broken code from legacy code removal.",
+		"BUGFIX: Fixed Device Schema Frame Naming and Logging Logic.",
+		"BUGFIX: Fixed Pishock website logs, Software now cleanly communicates with pishock."
+	],
+	"6.1.0": [
+		"BUGFIX: Fixed the feature of not saving devices from pishock.",
+		"BUGFIX: Fixed the feature of not pruning devices from pishock Api.",
+		"EXTENDED: New TikTok Gift Mapping Added."
+	],
+	"6.0.9": [
+		"FEATURE: Added VRC OSC Router Support.",
+		"EXPLAIN: You can now edit the osc_config.json under /saved/config/ folder to path into vrc router!"
+	],
+	"6.0.8": [
+		"HOTFIX: Controls Location Logic.",
+		"HOTFIX: Accidentally left the debug logic on causing slow downs.",
+		"REBUILD: Rebuilt TikTok Gift Mapping, the insane amount of gifts caused a slow down."
+	],
+	"6.0.7": [
+		"HOTFIX: VRC Fury Parameter Compressor Logic Fix.",
+		"EXPLAIN: The new behavoir invalidated a ton of controls on large avatars causing them to spill over in Tikfinity, you may need to delete duplicate controls in your lists that don't work.",
+		"HOTFIX: Buttons not having the correct identifier causing some weird issues.",
+		"IMPROVEMENT: Moved Save Layout to the OSC Controls drop down for faster navigation."
+	],
+	"6.0.6": [
+			"FEATURE: New OwO Vest Support Using OwO Visualizer, This is locked behind the Gold License.",
+			"EXPLAIN: OwO Haptic Vest Chains will run the loaded files from /saved/controls/owo and send them to your vest in real time using the OwO Visualizer.",
+			"SPECIAL NOTE: OwO Haptic Vests Support a Maximum of 11 actions per file run and can interupt each other, additional logic to come later to the que mode to correct for this.",
+			"FEATURE: New Save Avatar State Button.",
+			"EXPLAIN: This button serves its purpose by allowing direct saving instead of relying on automatic saves in case you forgot to load in specifically and want to make sure its corrected.",
+			"IMPROVEMENT: Updated TikTok running gift map with expanded metadata and icon caching.",
+			"IMPROVEMENT: Optimized vest dispatch pipeline for fully non-blocking performance during live streams.",
+			"FIX: Added robust error handling for missing or malformed .owo files to prevent silent failures.",
+			"HOTFIX: Resolved rare issue where some live streams have enough viewers the on the fly editor takes forever to load.",
+			"IMPROVEMENT: Added inline tooltip descriptions for all OwO Vest controls in the chain editor UI.",
+			"IMPROVEMENT: Seperated Pishock devices so you can identify which is which in the editor easily.",
+			"IMPROVEMENT: Increased editor speed by up to 57%",
+			"IMPROVEMENT: Streamlined configuration storage for faster template loading and reduced disk I/O.",
+			"MISC: Changed the default loaded drop down to the special tab"
+	],
+	"6.0.4": [
+		"HOTFIX: Fixed Manual Connection Option for TikTok Fallback.",
+		"FEATURE: New Pishock Mode Added called Rage, This Requires the Silver+ License.",
+		"EXPLAIN: Rage Mode Fires a 100ms zap at the duration and intensity you set with half second delay.",
+		"IMPROVEMENT: Updated Tiktok running gift map for summer fest."
+	],
+	"6.0.3": [
+			"FEATURE: Added support popup suppression flag-once user clicks OK or Contact Support, no further popups for this session.",
+			"FEATURE: Custom critical-error message parameter in _show_support_popup to encourage contacting The Vixen Den ASAP.",
+			
+			"FIX: Block next OSC chain execution until the longest per-step reset timer completes-prevents overlapping outfits.",
+			"FIX: _run_pishock_parallel now correctly spawns one thread per selected device for both special and non-special modes.",
+			"FIX: Non-special (chunked) PiShock sender now honors the full total_duration_ms, splitting into successive ≤15 s PUBLISH chunks with proper inter-chunk delays.",
+			"FIX: send_special_mode runner scopes and updates 'intensity' and 'step' correctly, enforces ≥1000 ms per pulse, and prevents UnboundLocalError.",
+			"FIX: Removed overly verbose detect_transport logging from the WebSocket connect loop.",
+			"FIX: Coerce null OriginalCommand to empty string in listener to avoid attribute errors.",
+			"FIX: Skip duplicate CONNECT_ERROR messages to avoid double-counting broker errors.",
+			"FIX: WebSocket listener now counts only real BROKER errors, triggers support popup on the 3rd, and resets its counter on success.",
+			
+			"IMPROVEMENT: Connect loop now resets its error and broker-error counters on successful connection, and applies exponential backoff properly.",
+			"IMPROVEMENT: Support popup now appears after 3 consecutive connection failures and will not reappear until acknowledged.",
+			"IMPROVEMENT: Watch Dog now creates the base files for the client filters using internal dictionary if the file is missing.",
+			"IMPROVEMENT: Subscriptions are now moved to thier own trigger type in the software.",
+			
+			"UX: Support popup foreground color updated to bright white for improved readability."
+	],
+	"6.0.2": [
+		"HOTFIX: Fixed Pishock related runner error that gave math errors."
+	],
+	"6.0.1": [
+		"HOTFIX: Pishock Runner dropping commands have been tightened.",
+		"HOTFIX: Pishock Share Codes no longer available to the user are now properly dropped.",
+		"HOTFIX: Pishock Share Codes now properly merge on share code change.",
+		"HOTFIX: Chain Editor can no longer open a ton of editor windows at the same time.",
+		"HOTFIX: Implemented a new watch dog system to automatically quiet down noisy avatars."
+	],
+	"6.0.0": [
+		"FEATURE: Shock Together – Collaborate with friends and experience synchronized live shocks!",
+		"FEATURE: New Trigger Type: Diamond Count – Activate chains based on the total diamonds received.",
+		"FEATURE: Precision Filtering – Set exact values and thresholds for refined trigger control.",
+		"FEATURE: Gift Count Threshold – Fire chains only when specific gift counts are met.",
+		"FEATURE: Gifter Level, Subscriber, and Moderator Filters – Limit triggers to specific user roles.",
+		
+		"IMPROVEMENT: General UI cleanup for a smoother and more intuitive experience.",
+		"IMPROVEMENT: Internal filter system refactored to minimize log spam and boost efficiency.",
+		"IMPROVEMENT: Enhanced PiShock integration with smarter logic and better reliability.",
+		"IMPROVEMENT: Tooltips added across the editor to guide you through each feature effortlessly.",
+		"IMPROVEMENT: Chain Runner now operates on a dedicated handler for significantly faster execution.",
+		"IMPROVEMENT: Controls Builder has its own handler, boosting startup and UI responsiveness.",
+		"IMPROVEMENT: Optimized startup performance when using heavy avatars – no more slowdowns.",
+		"IMPROVEMENT: TikTok gift mapping updated for improved accuracy and future compatibility.",
+		"IMPROVEMENT: Importing Chains now converts pishock devices automatically but you must reselect your device when importing.",
+		
+		"FIX: 'Reset Before' logic now functions correctly during chain execution.",
+		"FIX: Right-click copy/paste restored in the config editor.",
+		"FIX: Eliminated face and full-body tracking spam bugs.",
+		"FIX: Fixed edge case crash in the priority queue under specific conditions.",
+		"FIX: Resolved rare disconnection bug with TikFinity integration.",
+		"FIX: Patched crash caused by TikFinity edge-case failures.",
+		"FIX: Fixed GUI freezing issues tied to specific trigger combinations.",
+		"FIX: Addressed PiShock stalling and live listener crash scenarios.",
+		"FIX: App version now accurately displays in the window title bar.",
+		"FIX: Fixed a rare bug where commands were silently ignored.",
+		"FIX: Prevented parameter spam and tooltip crashes caused by bad widget references.",
+		"FIX: Trigger-specific UI components now reliably load on startup.",
+		"FIX: Gift Mapping Missing over 200 different gifts.",
+		"FIX: Randomizer Not setting the delay and duration the same causing commands not to send correctly.",
+		"FIX: Fixed an issue where normal zaps would cancel out each other.",
+		"FIX: Fixed an issue where devices would not run simulateounously.",
+		"FIX: Fixed an issue where the normal chains would cancel out the special modes.",
+		"FIX: Fixed an issue where exporting chains would not show the prompt telling you.",
+		"FIX: Fixed an issue where the internal queue system wouldn't lock the runner.",
+		
+		"INTERNAL/DEV: Emulated Android client parameters in TikTokLiveConnection to retrieve the full (mobile + web) gift catalog.",
+		"INTERNAL/DEV: Refactored giftMapping script to replace deprecated getAvailableGifts() calls with fetchAvailableGifts().",
+		"INTERNAL/DEV: Corrected HTTP client usage-switched from `url` to `path` in webClient.request to eliminate the startsWith TypeError."
+	],
+	"5.5.2": [
+		"HOTFIX: Steam VR Valve Index Issues breaking the program.",
+		"HOTFIX: Certain OSC Assets Causing back log slow startup.",
+		"HOTFIX: Pishock API Response Issues."
+	],
+	"5.5.0": [
+			"FEATURE: Added silver-tier exclusive Pishock Pattern Editor.",
+			"FEATURE: Added new 'pattern' PiShock mode with custom sequence editor.",
+			"FEATURE: Added bronze-tier exclusive modes: pulse, burst, oscillation, randomized_wobble.",
+			"INFO: If you bought Silver tier all modes are available as they scale.",
+			"UX: New GUI controls for all special PiShock modes with tooltips and gating per license tier.",
+			"FIX: Enforced minimum 1000ms duration for all special mode operations to avoid dropped packets.",
+			"FIX: Proper delay handling for randomized_wobble to ensure device receives all signals.",
+			"FIX: Pattern steps now validated to ensure minimum duration and delay values.",
+			"FIX: Patched more stray full body tracking OSC Parameters.",
+			"FIX: Patched Large Logs! Oops! Now cleanly nukes your logs and backs them up once a day! Thris greatly improves load performance.",
+			"IMPROVEMENT: Increased Max CPU Threads from 4 to 8 greatly improving runtime performance."
+	],
+	"5.4.5": [
+		"HOTFIX: Gui dispatcher for new row filtering with heavy avatars."
+	],
+	"5.4.4": [
+		"NEW: Nuclear OSC filtering system implemented for tracking data suppression.",
+		"NEW: Fuzzy suffix blocklist added to silently reject invasive OSC suffixes.",
+		"IMPROVED: Legacy noisy filter system now loads alongside nuclear filters for layered OSC handling.",
+		"INTERNAL: Controls parser now de-dupes noisy parameters against enforced blocklists.",
+		"INTERNAL: Added hard filter layer for known tracking prefixes and motion parameters."
+	],
+	"5.4.3": [
+		"FIX: Avatar Controls sometimes not firing correctly.",
+		"FIX: TikFinity desync on new avatar imports or loading unregistered avatars.",
+		"FIX: Chain registry conflicts when gift-triggered chains re-import improperly.",
+		"NEW: Added Chain Controls dropdown to toolbar.",
+		"NEW: Added Export and Import Chains buttons under Chain Controls.",
+		"NEW: DRM License Check integrated (supports licensed and premium tiers).",
+		"IMPROVED: load_avatar_from_path now purges and reloads saved controls before re-rendering UI.",
+		"IMPROVED: Registry I/O and TikFinity integration now sync actions and categories cleanly after avatar load.",
+		"REMOVED: OneDrive placeholder pinning logic (was unstable on non-standard drives).",
+		"NEW: Export directory created at saved/controls/export/ during startup seeding.",
+		"INTERNAL: Restructured TikFinity API boot logic for stronger cache validation and recovery after state loss."
+	],
+	"5.4.2": [
+		"FIX: Avatar loader now always saves last_avatar.txt properly after a successful import.",
+		"FIX: Controls JSON is now rewritten after load to preserve a hard backup, even if unchanged.",
+		"FIX: Legacy or stale control entries no longer overwrite valid avatar control files.",
+		"FIX: Forced override addresses (e.g., ::# syntax) are now validated against base OSC paths.",
+		"FIX: sanitize_controls no longer drops user-defined parameters like /avatar/change or /tracking/vrsystem.",
+		"FIX: Controls merge no longer silently corrupts valid entries when avatar JSON is missing.",
+		"FIX: Improved compatibility for OSCQuery parameter matching under fuzzy conditions.",
+		"FIX: Better error handling for missing or malformed avatar parameter JSON files.",
+		"NEW: sanitize_controls now supports OSCBridge validation + avatar JSON + whitelist path logic.",
+		"NEW: Automatic cleanup of invalid controls entries using OSC param cache and avatar source.",
+		"NEW: User-injected paths like /chatbox/input are preserved by explicit path whitelist.",
+		"NEW: sanitize_controls logs full drop/keep summaries to controls.log for traceability.",
+		"IMPROVED: load_avatar_from_path now purges and reloads saved controls before re-rendering UI.",
+		"IMPROVED: Avatar control rows are only persisted if successfully validated.",
+		"INTERNAL: Moved sanitize_controls to shared helpers to enable chain-level use if needed.",
+		"INTERNAL: Restructured validation logic to enable fuzzy override compatibility and cache fallback paths."
+	],
+	"5.4.1": [
+		"FIX: Drag-and-drop chain reordering now reliably updates and persists layout_index in saved files.",
+		"FIX: save_chains_force now enforces correct layout ordering based on chain frame position.",
+		"FIX: Chain UI now respects layout_index explicitly during regrid, ensuring consistent visual order.",
+		"FIX: Resolved rare case where layout_index changes were not saved if hash matched prior snapshot.",
+		"FIX: Backups are now created properly even when layout_index is the only change.",
+		"FIX: Resolved Issue with chains that are gift triggered not being blocked from Tikfinity listings.",
+		"FIX: Extreme edge case where if Tikfinity sent a new gift thats not mapped it does it anyway.",
+		"FIX: Chain driven events not detecting in some cases.",
+		"FIX: Pishock Api sometimes throwing a popup for whatever reason on broker errors and not being 100% reliable.",
+		"FIX: Pishock Api pulsating, decreased the chain offset so they run more tightly together.",
+		"FIX: Repeated Gift Chains not firing after X count.",
+		"FIX: Filters not loading on the Ui correctly.",
+		"FIX: Older Chain Driven Events sometimes throwing a rare edge case value error and not appearing in the Ui anymore.",
+		"NEW: Repeat Mode toggle in the Chain Editor, this enables you to allow repeat counts to stack infinitely.",
+		"NEW: Added 6 more loggers to the program for each module to help detect and find errors.",
+		"NEW: Added Future Support for more features such as if its a Subscriber they get additional things!",
+		"IMPROVED: load_chains applies smarter normalization for missing or invalid layout_index values.",
+		"INTERNAL: save_chains_force now supports external layout maps for full control over save ordering.",
+		"INTERNAL: Removed legacy layout_index bypass checks that blocked drag-save operations.",
+		"INTERNAL: Simplified layout tracking logic across UI and chain metadata for better synchronization."
+	],
+	"5.4.0": [
+		"NEW: Drag-and-drop re-arrangeable chain buttons with glow effects on hover.",
+		"NEW: Intelligent Filtering system with silent intellisense corrections-automatically fixes minor input errors.",
+		"NEW: Fixed face tracking data stream edge case causing loss of updates.",
+		"NEW: Intelligent Logging for more useful diagnostics with reduced noise.",
+		"NEW: Intelligent PiShock Handling for improved session stability and edge-case recovery.",
+		"NEW: Improved PiShock API handling with faster reconnections and higher reliability.",
+		"NEW: Added buttons in the top-right linking to official project websites.",
+		"NEW: Refreshed branding and styling across UI to match new design aesthetic.",
+		"NEW: 'Filter Out' option in right-click menu for suppressing noisy OSC parameters via persistent filter.",
+		"NEW: Regex-based sanitization for malformed OSC parameters (e.g., addresses starting with '!').",
+		"NEW: Improved fuzzy search across OSC paths and visible labels (case-insensitive, token-aware).",
+		"FIX: Face tracking data bug patched for stream continuity.",
+		"FIX: Better error handling for malformed OSC address edge cases.",
+		"IMPROVED: Faster load times for UI initialization and parameter parsing.",
+		"IMPROVED: Save logic now writes faster and more safely under high volume.",
+		"INTERNAL: Intelligent Error and Crash Handling introduced across thread contexts.",
+		"INTERNAL: Refactored search logic for clarity and reliability.",
+		"INTERNAL: Introduced centralized _add_to_noisy_filter() for safely updating noisy_parameters.json."
+	],
+	"5.3.0": [
+		"NEW: Added a settings gear next to the search bar; this opens the Safety Controls Side Dock.",
+		"NEW: Added reconnection logic for V3 PiShock API handling.",
+		"NEW: Added retry logic for fetching devices from PiShock.",
+		"NEW: Added Emergency Stop button inside the side dock to forcefully terminate the app.",
+		"NEW: Implemented Pause All Devices button logic (button currently hidden pending API support from PiShock team).",
+		"FIX: Improved Chain Editor UI contrast to better indicate selected vs unselected devices.",
+		"FIX: Devices without 'code' are now handled properly if 'shockerId' is present.",
+		"FIX: Redis connection errors are now internally retried until stabilized.",
+		"INTERNAL: Simplified _send_publish_command logic.",
+		"INTERNAL: Removed legacy IP regex logic from _send_simple.",
+		"INTERNAL: Centralized versioning in dashboard.py via __version__.",
+		"INTERNAL: Version bumped to 5.3.0."
+	],
+	"5.2.2": [
+		"NEW: Added 'Special' mode to the toolbar dropdown with dedicated buttons for 'Changelog' and '💖 Support Me'.",
+		"NEW: Introduced LICENSE_TIER global parsed from Gumroad 'variants' (Bronze, Silver, Gold).",
+		"NEW: Personalized license popup messages based on supporter tier with emojis and custom text.",
+		"NEW: LICENSE_TIER now drives all license messaging instead of LICENSE_TYPE.",
+		"NEW: Display tier-specific thank-you messages for Gold, Silver, and Bronze supporters.",
+		"NEW: Added license.json first-run fallback with auto-write of free license key.",
+		"NEW: Implemented is_running() method in PiShockClient to prevent duplicate thread starts.",
+		"FIX: Resolved incorrect tkinter popup showing 'Free License' despite valid supporter license due to missing global LICENSE_TIER.",
+		"FIX: Ensured external browser is always used for 'Support Me' link using webbrowser.open_new().",
+		"FIX: Removed legacy Support button from right_tools once migrated to the 'Special' toolbar.",
+		"INTERNAL: Minor UI cleanup and positioning adjustments in render_toolbar_buttons()."
+	],
+  "5.2.0": [
+    "NEW: Deferred TikFinity action registration until after UI and OSC initialization using the _ready flag and finalize_controls().",
+    "NEW: Deferred TikFinity registry cache reads and writes until after OSC parameters are loaded via load_registry_cache() and save_registry_cache().",
+    "NEW: Added re_register_all_tikfinity_actions() helper to hot-reload TikFinity actions and prevent duplicate registrations.",
+    "NEW: Integrated Gumroad license verification with GUMROAD_VERIFY_URL, SUPPORTER_PRODUCT_ID, and FREE_POPUP_URL constants.",
+    "NEW: Implemented _check_license_valid() to validate license key (read from /saved/config/user.json) against Gumroad’s API using requests.",
+    "NEW: On startup, display a “Free Version” popup when no valid license is found, featuring “Buy Supporter License” and “Continue (Free)” options.",
+    "NEW: Extended edit_config() to include a License Key field, persisting it alongside TikTok and PiShock settings.",
+    "FIX: Eliminated premature register_action() calls and config persistence by deferring both until after full initialization.",
+    "INTERNAL: Adjusted edit_config() window layout to accommodate the new License Key entry.",
+    "INTERNAL: Version bumped to 5.2.0"
+  ],
+  "5.0.0": [
+    "FIX: VRChat collision issue with VRCFacetracking resolved to ensure proper parameter syncing.",
+    "FIX: Migrated to a faster VRC parameter system for improved runtime performance.",
+    "START: Building installer package for streamlined update deployment.",
+    "FIX: Core logic for seeding default files and configs corrected for stability on first run.",
+    "FIX: Addressed lockup and client crash during avatar change triggered by OSC update race condition.",
+    "FIX: Core logic for Hyroe gift + Fooma Twitch integration now ensures proper detection and event registration.",
+    "MIGRATED: Core logic and save operations now leverage VRC OSC Query interface for lower-latency interactions.",
+    "MIGRATED: OSC logic now powered by an internal API layer for faster parsing and cleaner abstraction.",
+    "MIGRATED: GUI logic improved for better async handling, faster redraws, and responsive OSC query results.",
+    "MIGRATED: Save/load pipelines now operate on optimized internal data structures to cut down disk I/O.",
+    "MIGRATED: Controls logic now uses unified internal sync model with the OSC bridge for stability.",
+    "INVESTIGATED: Avatar parameter change detected in OSC Debug but not firing in-game. Root cause: VRChat bug. Workaround: avatar must be favorited to consistently trigger updates.",
+    "FIX: Queue freeze resolved by replacing incorrect return in pump_q loop with continue, ensuring proper message handling.",
+    "OPTIMIZED: Registry cache now writes only on content changes, preventing unnecessary disk I/O at startup."
+  ],
+  "4.8.5": [
+    "NEW: Added PiShock Connection Warning for when PiShock servers encounter service issues.",
+    "NEW: Added PiShock Connection Warning for user hubs failing to connect to their registered devices.",
+    "NEW: Added 'Contact Support' button to PiShock error dialog, which opens the official PiShock Discord in the browser.",
+    "FIX: Fixed auto-registration of Hyroe's INT/gift assets - issue identified by YoteTheCoyote; resolved via robust file creation logic.",
+    "FIX: Ensured control and chain files are pre-created and saved under /saved/<folder> before attempting auto-registration.",
+    "INTERNAL: Added non-interactive create_int_series_rows() helper to bypass GUI prompts and match manual INT injection.",
+    "INTERNAL: Refactored _auto_register_assets() to use real control creation logic instead of synthetic fallback.",
+    "INTERNAL: Version bumped to 4.8.5"
+  ],
+  "4.8.0": [
+    "NEW: Fuzzy name matching for Hyroe gift auto-registration - mismatched casing or slight variations now resolve to the correct giftMapping entry, so icons and coinCosts display properly.",
+    "NEW: Fallback delays for unspecified gifts in HYROE_GIFTS (defaults to 6 s) and explicit filtering of holiday specials (Ghost, Pumpkin) to prevent unwanted chains.",
+    "FIX: `_auto_register_assets` now ensures `_gift_mapping` is loaded before use, eliminating silent failures when giftMapping wasn’t initialized.",
+    "NEW: INT-series injection only resets on the final step (::#N), avoiding redundant resets during the chain.",
+    "FIX: Robust avatar JSON path resolution in `_on_avatar_change` - handles both legacy string entries and new-style dicts without KeyError.",
+    "FIX: `send_shock_ws` now pauses all non-PUBLISH operations during a PUBLISH to avoid being flagged as malicious by the PiShock broker.",
+    "FIX: Heartbeat task cancellation and reconnect back-off refined to prevent overlapping tasks and spurious disconnections.",
+    "UI: Gift-chain buttons now correctly display the 🎁 icon, coinCost badge, and icon image from giftMapping.",
+    "UI: Chain play buttons updated to use the new `ChainPlay.TButton` style for consistent theming.",
+    "SEC: Hardened `_auto_register_assets` so that only newly added chains are persisted to disk, avoiding accidental overwrites."
+  ],
+  "4.5.2": [
+    "NEW: One-shot save-guard → creates timestamped backups, refuses empty / smaller lists silently, and logs at most once (no spam).",
+    "FIX: AttributeErrors on capture-timeout (_finalize_capture / _save_avatar_snapshot) resolved - timers now target valid methods.",
+    "NEW: Debounced /avatar/change (1 s) + rolling-buffer pre-fill; capture finalises idempotently and marks avatar ready.",
+    "NEW: Burst-safe OSC sender - repeated hits refresh the same reset timer, so chat-spam maps cleanly in-game; INT-series unchanged.",
+    "FIX: ‘after_id’ UnboundLocalError squashed when multiple INT-series parameters fire in quick succession.",
+    "API: /api/features/actions/exec fully rewritten - always returns HTTP 200 with {\"data\":[]}, honours both \"context\" & legacy \"data\", sets CORS, and queues work on the Tk thread when alive.",
+    "API: Internal callback errors are logged but never bubble up, eliminating TikFinity’s 500-error flood and queue bloat.",
+    "UI: Guard / API errors now emit a single, colour-coded log-line per incident instead of endless repeats.",
+    "SEC: Flask handler no longer returns (Response,int) tuple - fixes NameError and adheres to WSGI expectations."
+  ],
+  "4.5.1": [
+    "NEW: Drop-in PiShock-v2 connector built around the official broker spec (PUBLISH / SUBSCRIBE) - no legacy code paths.",
+    "NEW: Automatic 25-second heartbeat (PING) keeps the WS session alive through broker idle-timeouts.",
+    "NEW: Self-healing reconnect loop with exponential back-off-+-random-jitter (5-→-60-s).",
+    "NEW: Graceful downgrade to *-log-only channels when Redis ping fan-out fails, so logs still stream while ops queue recovers.",
+    "FIX: PUBLISH payload now mirrors the NodeJS reference exactly (nested list removed, integers not strings).",
+    "NEW: Device discovery writes a de-duplicated list to saved/config/devices/devices.json and re-uses it on startup.",
+    "FIX: Pathing re-wired to global constants (USER_CFG_FILE, PISHOCK_DEVICE_FILE, etc.) eliminating hard-coded strings.",
+    "UI: Live PiShock event log shows success / error feedback with timestamps and coloured badges.",
+    "INT: Queue heartbeat to GUI thread (‘connected’ / ‘disconnected’) so status LED never desynchronises.",
+    "API: TLS context enforced on websockets.connect → prevents MITM/downgrade attacks and meets PiShock security guidance."
+  ],
+  "4.0.0": [
+    "NEW: Event dispatch queue for TikFinity to decouple UI thread logic",
+    "NEW: Priority queue for gift chain execution (via `priority` field)",
+    "NEW: Fuzzy gift matching and preview icons via AutoCompleteCombobox",
+    "NEW: Added New UI Element Called Changelog, this reads this very text!",
+    "FIX: Accurate \"Connected\" event status for TikFinity socket (q.put fixed)",
+    "NEW: TikFinity gift handler merged with OSC chain trigger",
+    "FIX: Gift chain buttons now render properly in UI",
+    "UI: Added changelog window with scrollback",
+    "INT: Code Cleanup performed to reduce load and stress on app",
+    "API: New Dedicated Listeners for Tikfinity Events"
+  ],
+  "3.8.5": [
+    "FIX: Prevented creation of empty chains (blank name or no steps)",
+    "FIX: Avoid UnboundLocalError in `_register_chain` for \"random\" trigger",
+    "FIX: Enforced `::#` integer cast logic during OSC dispatch",
+    "FIX: Respects `random` mode when executing chain (now shuffles properly)",
+    "FIX: Ensures `random` is registered with correct delay_min/delay_max logic",
+    "INT: `random` module import added to prevent crash on shuffle",
+    "LOG: Enhanced debug output for chain execution paths"
+  ],
+  "3.8.2": [
+    "FIX: Deferred TikFinity re-register now waits for avatar load completion",
+    "FIX: Added missing _save_avatar_capture_log() method to prevent crash",
+    "FIX: Prevent duplicate or premature TikFinity action executions",
+    "INT: Internal _avatar_ready flag and queue event now synced reliably",
+    "INT: Radial layout regeneration logic improved with stable path hashing",
+    "LOG: TikFinity action registration now confirmed with console prints"
+  ],
+  "3.8.1": [
+    "FIX: Layouts now correctly saved to controls_<avatar_id>.json",
+    "FIX: Ensures self.avatar_id and config stay in sync during save/load",
+    "FIX: Auto-load of saved layouts now restores INT-series rows reliably",
+    "FIX: Logging added to confirm saved/loaded control file paths",
+    "FIX: WebSocket event logging hardened for unknown TikFinity event types",
+    "INT: Improved TikFinity registration logic: unique actions, grouped UI",
+    "INT: Row builder assigns full address for action IDs to preserve uniqueness"
+  ],
+  "3.8.0": [
+    "INT: Live parameter capture now auto-triggers on avatar change",
+    "ADD: Per-avatar snapshot (<id>.json) and current pointer file added",
+    "ADD: Radial support: radials/controls_<id>.json with hash detection",
+    "ADD: Chains can now load per avatar and execute in serial mode",
+    "FIX: UI crash on missing config folders",
+    "FIX: Avatar change no longer causes double-loading or layout overwrite",
+    "FIX: VRChat’s noisy parameters (Voice, VRMode, etc.) now ignored on capture",
+    "UIX: Improved OSC status & avatar load feedback in status bar"
+  ],
+  "3.7.0": [
+    "Avatar JSON auto-load now re-generates radial layout correctly",
+    "INT-series parameters now reset using correct base OSC address",
+    "Timer reset logic now respects INT-series row mapping",
+    "TikFinity gift actions no longer register twice on reload",
+    "Robust fallback if avatar JSON has missing or invalid ID",
+    "Auto-loaded avatars now correctly trigger snapshot + radial logic",
+    "Graceful handling of broken or missing radial layout files",
+    "WebSocket reconnect stability improved (TikFinity + gift server)",
+    "UI layout behavior in dark mode refined (hover, scrollbar, combobox)",
+    "FIX: Processes now terminate correctly when closing the client",
+    "FIX: INT Series delete button no longer deletes chains",
+    "NEW: Autodetection + avatar prompt for unknown avatar imports",
+    "NEW: Simplified tutorial and onboarding steps",
+    "INT: Radial layout deduplication with hash prefilter"
+  ],
+  "3.6.2.1": [
+    "FIX: TikFinity new chains not registering"
+  ],
+  "3.6.1": [
+    "FIX: Critical thread allocation issue fixed",
+    "FIX: Offline chain button logic corrected"
+  ],
+  "3.6.0": [
+    "NEW: Priority system for chains (lower = sooner)",
+    "NEW: Easy Mode radial editor (UI shell only)",
+    "NEW: Gift trigger WebSocket listener (local)",
+    "NEW: Coin count based gift threshold triggers",
+    "NEW: Radial menu auto-generation from avatar JSON",
+    "NEW: Auto-load last used avatar snapshot",
+    "NEW: Avatar snapshot and layout save/load support",
+    "NEW: Gift image and coin cost in UI (via TikTok CDN)",
+    "NEW: /saved/ storage for all user data",
+    "FIX: Dark theme hover highlight improved",
+    "FIX: Duplicate TikFinity action registration blocked",
+    "FIX: Graceful handling of broken giftMapping.json",
+    "FIX: Chain delay/step spacing bug fixed",
+    "FIX: Capture logs can now be saved pre/post avatar change",
+    "NEW: Unified control UI with trigger mode support"
+  ]
+};
+</script>
+
+<script>
+const container = document.getElementById("log");
+const search = document.getElementById("q");
+
+function render(filter = "") {
+  container.innerHTML = "";
+  const q = filter.toLowerCase();
+
+  for (const [version, entries] of Object.entries(CHANGELOG)) {
+    const block = document.createElement("section");
+    block.className = "ver";
+
+    const h = document.createElement("h2");
+    h.innerHTML = `Version ${version} <span class="badge">${entries.length} items</span>`;
+    block.appendChild(h);
+
+    const ul = document.createElement("ul");
+
+    let show = false;
+    for (const line of entries) {
+      if (!q || line.toLowerCase().includes(q)) {
+        show = true;
+        const li = document.createElement("li");
+        li.textContent = line;
+        ul.appendChild(li);
+      }
+    }
+
+    if (show) {
+      block.appendChild(ul);
+      container.appendChild(block);
+    }
+  }
+}
+
+search.addEventListener("input", () => render(search.value));
+render();
+</script>
+
+</body>
+</html>

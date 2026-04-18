@@ -1,0 +1,341 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>FAQ - Stream Connector</title>
+
+<style>
+:root { color-scheme: light dark; }
+
+body {
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  line-height: 1.55;
+  max-width: 1100px;
+  margin: 32px auto;
+  padding: 0 16px;
+}
+
+h1, h2, h3 { margin-top: 1.4em; }
+
+pre, code {
+  background: #111;
+  color: #eee;
+  padding: 6px 8px;
+  border-radius: 6px;
+}
+
+pre { overflow-x: auto; }
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 16px 0;
+}
+
+th, td {
+  border: 1px solid rgba(127,127,127,.35);
+  padding: 8px;
+}
+
+.docs-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+  align-items: center;
+  padding: 12px 14px;
+  margin-bottom: 20px;
+  border: 1px solid rgba(127,127,127,.35);
+  border-radius: 12px;
+  background: rgba(30,30,30,.6);
+  backdrop-filter: blur(6px);
+}
+
+.docs-nav a {
+  padding: 6px 10px;
+  border-radius: 8px;
+  text-decoration: none;
+  color: inherit;
+  border: 1px solid transparent;
+}
+
+.docs-nav a:hover {
+  background: rgba(100,100,100,.2);
+  border-color: rgba(127,127,127,.35);
+}
+
+.back-btn {
+  position: fixed;
+  bottom: 24px;
+  padding: 10px 14px;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 10px;
+  border: 1px solid rgba(127,127,127,.35);
+  background: rgba(20,20,20,.9);
+  color: #fff;
+  text-decoration: none;
+  backdrop-filter: blur(6px);
+  transition: all .15s ease;
+  z-index: 9999;
+}
+
+.back-home { left: 24px; }
+.back-top { right: 24px; }
+
+.back-btn:hover {
+  background: rgba(80,80,80,.9);
+  transform: translateY(-2px);
+}
+
+hr {
+  border: 0;
+  border-top: 1px solid rgba(127,127,127,.35);
+  margin: 28px 0;
+}
+</style>
+</head>
+
+<body>
+
+<nav class="docs-nav">
+  <strong>Docs</strong>
+  <a href="index.html">Home</a>
+  <a href="README.html">Overview</a>
+  <a href="Installation.html">Install</a>
+  <a href="Features.html">Features</a>
+  <a href="File-Structure.html">File Structure</a>
+  <a href="Security-&-Network-Architecture.html">Security</a>
+  <a href="Changelog.html">Changelog</a>
+</nav>
+
+<a href="index.html" class="back-btn back-home">⬅ Back</a>
+<a href="#top" class="back-btn back-top">⬆ Top</a>
+
+<h1 id="top">❓ FAQ - Read This Before You Ask</h1>
+
+<hr />
+
+<h2>Does Stream Connector run in the cloud?</h2>
+
+<p><strong>No.</strong></p>
+
+<p>
+Nothing runs in the cloud.  
+Nothing phones home.  
+Nothing listens on the internet.
+</p>
+
+<p>
+Everything runs <strong>locally on your machine</strong>.
+If it’s talking to something, you told it to.
+</p>
+
+<hr />
+
+<h2>Do I need all the features?</h2>
+
+<p>Nope.</p>
+
+<p>
+Every system is modular:
+</p>
+
+<ul>
+  <li>Use only VRChat</li>
+  <li>Use only TikTok</li>
+  <li>Use only Streamer.bot</li>
+  <li>Use only OwO</li>
+  <li>Use only PiShock</li>
+  <li>Use only Intiface</li>
+	<li>Use Everything</li>
+</ul>
+
+<p>
+Nothing forces you into anything.
+</p>
+
+<hr />
+
+<h2>Can I use only VRChat?</h2>
+
+<p>Yes.</p>
+
+<p>
+OSC works standalone.  
+No TikTok.  
+No bots.  
+No nonsense.
+</p>
+
+<hr />
+
+<h2>Can I use only TikTok?</h2>
+
+<p>Yes.</p>
+
+<p>
+TikTok → Stream Connector → Actions.
+No VRChat required.
+</p>
+
+<hr />
+
+<h2>Do I need the Extended / Pro / Whatever key?</h2>
+
+<p>
+No.
+</p>
+
+<p>
+That system is dead.
+</p>
+
+<p>
+Everything runs unlocked now.
+No tiers. No gating. No bullshit.
+</p>
+
+<hr />
+
+<h2>Is this a subscription?</h2>
+
+<p>
+No.
+</p>
+
+<p>
+There is no forced subscription.
+No background billing.
+No surprise charges.
+</p>
+
+<p>
+Future add-ons (like advanced hardware integrations) may exist -
+but the core system stays free and local.
+</p>
+
+<hr />
+
+<h2>Is this safe?</h2>
+
+<p>
+Yes - and more importantly, it’s <strong>predictable</strong>.
+</p>
+
+<ul>
+  <li>Local-only execution</li>
+  <li>No inbound ports</li>
+  <li>No remote control</li>
+  <li>No telemetry</li>
+  <li>No background services</li>
+  <li>No silent updates</li>
+</ul>
+
+<p>
+If something happens, it’s because you told it to.
+</p>
+
+<hr />
+
+<h2>Can this brick my system?</h2>
+
+<p>
+No.
+</p>
+
+<p>
+Worst case?
+You misconfigure something and it doesn’t trigger.
+That’s it.
+</p>
+
+<p>
+There is no persistent system modification.
+No kernel hooks.
+No driver installs.
+</p>
+
+<hr />
+
+<h2>Can I break stuff?</h2>
+
+<p>
+Yes - if you’re trying to.
+</p>
+
+<p>
+But the system is designed with:
+</p>
+
+<ul>
+  <li>Rate limits</li>
+  <li>Cooldowns</li>
+  <li>Safety gates</li>
+  <li>Hard execution caps</li>
+</ul>
+
+<p>
+You have control - not chaos.
+</p>
+
+<hr />
+
+<h2>Where does my data go?</h2>
+
+<p>
+Nowhere.
+</p>
+
+<p>
+Everything lives inside:
+</p>
+
+<pre><code>Stream Connector/
+└── saved/
+    ├── config/
+    ├── controls/
+    ├── logs/
+    └── userdata/
+</code></pre>
+
+<p>
+Delete that folder and it’s a clean slate.
+</p>
+
+<hr />
+
+<h2>Final Answer</h2>
+
+<p>
+If you want:
+</p>
+
+<ul>
+  <li>Cloud dashboards</li>
+  <li>Subscriptions</li>
+  <li>Telemetry</li>
+  <li>Hand-holding</li>
+</ul>
+
+<p>
+This probably isn’t for you.
+</p>
+
+<p>
+If you want:
+</p>
+
+<ul>
+  <li>Control</li>
+  <li>Precision</li>
+  <li>Local execution</li>
+  <li>No corporate leash</li>
+</ul>
+
+<p><strong>Then yeah. You’re in the right place.</strong></p>
+
+<hr />
+
+</body>
+</html>

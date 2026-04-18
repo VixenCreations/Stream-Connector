@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>File Structure</title>
+
+  <style>
+    :root {
+      color-scheme: light dark;
+      --accent: #ff3b3b;
+      --border: rgba(127,127,127,.35);
+    }
+
+    body {
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      line-height: 1.6;
+      max-width: 980px;
+      margin: 32px auto;
+      padding: 0 18px;
+    }
+
+    h1, h2 {
+      margin-top: 2em;
+      border-left: 4px solid var(--accent);
+      padding-left: 12px;
+    }
+
+    pre {
+      background: rgba(0,0,0,0.25);
+      padding: 14px;
+      border-radius: 10px;
+      overflow-x: auto;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 32px 0;
+    }
+
+    ul {
+      margin-left: 1.2em;
+    }
+
+    li {
+      margin: 0.4em 0;
+    }
+
+    /* Nav */
+    .docs-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 12px;
+      align-items: center;
+      padding: 12px 14px;
+      margin-bottom: 20px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: rgba(30,30,30,0.6);
+      backdrop-filter: blur(6px);
+    }
+
+    .docs-nav a {
+      padding: 6px 10px;
+      border-radius: 8px;
+      color: inherit;
+      border: 1px solid transparent;
+      text-decoration: none;
+      transition: all 0.15s ease;
+    }
+
+    .docs-nav a:hover {
+      background: rgba(100,100,100,0.2);
+      border-color: var(--border);
+    }
+
+    /* Buttons */
+    .back-btn {
+      position: fixed;
+      bottom: 24px;
+      padding: 10px 14px;
+      font-size: 14px;
+      font-weight: 700;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: rgba(20,20,20,0.9);
+      color: #fff;
+      text-decoration: none;
+      backdrop-filter: blur(6px);
+      transition: all 0.15s ease;
+      z-index: 9999;
+    }
+
+    .back-home { left: 24px; }
+    .back-top { right: 24px; }
+
+    .back-btn:hover {
+      background: rgba(80,80,80,0.9);
+      transform: translateY(-2px);
+    }
+  </style>
+</head>
+
+<body>
+
+<nav class="docs-nav">
+  <a href="index.html">Home</a>
+  <a href="README.html">Overview</a>
+  <a href="Installation.html">Install</a>
+  <a href="Features.html">Features</a>
+  <a href="Additional-Uses.html">Additional Uses</a>
+  <a href="Changelog.html">Changelog</a>
+  <a href="Upcoming-Features.html">Upcoming</a>
+  <a href="Extended-Features-Key.html">Extended</a>
+  <a href="File-Structure.html">File Structure</a>
+  <a href="Security-&-Licensing.html">Security</a>
+  <a href="Security-&-Network-Architecture.html">Network</a>
+  <a href="Stream-Connector-Dev-Guide-External-API.html">Dev: API</a>
+  <a href="Stream-Connector-Dev-Guide-Streamerbot.html">Dev: Streamer.bot</a>
+  <a href="FAQ.html">FAQ</a>
+</nav>
+
+<a href="#top" class="back-btn back-top">⬆ Back to Top</a>
+<a href="index.html" class="back-btn back-home">⬅ Home</a>
+
+<h1 id="top">📁 File Structure</h1>
+
+<p>
+This is how Stream Connector is laid out.
+Nothing here is accidental.  
+Everything exists for a reason.
+</p>
+
+<hr />
+
+<h2>📦 Root</h2>
+
+<pre><code>Stream Connector/
+├── Stream Connector.exe
+├── giftMapping.json
+└── saved/
+</code></pre>
+
+<p>
+Delete <code>saved/</code> and the app resets.
+Everything important lives there.
+</p>
+
+<hr />
+
+<h2>🗂 saved/</h2>
+
+<pre><code>saved/
+├── changelogs/
+├── config/
+├── controls/
+├── logs/
+└── userdata/
+</code></pre>
+
+<hr />
+
+<h2>📝 saved/changelogs/</h2>
+
+<pre><code>saved/changelogs/
+└── version.json
+</code></pre>
+
+<p>Used by the UI to display release history.</p>
+
+<hr />
+
+<h2>⚙️ saved/config/</h2>
+
+<pre><code>saved/config/
+├── devices/
+├── filters/
+│   ├── noisy_parameters.json
+│   └── nuclear.json
+└── routing/
+    └── osc_config.json
+</code></pre>
+
+<hr />
+
+<h2>🎛 saved/controls/</h2>
+
+<pre><code>saved/controls/
+├── chains/
+│   ├── *.json
+│   └── backup/
+├── export/
+├── owo/
+└── backup/
+</code></pre>
+
+<hr />
+
+<h2>📊 saved/logs/ (New Structure)</h2>
+
+<pre><code>saved/logs/
+├── core/
+│   ├── core-debug.log
+│   └── gui.log
+│
+├── controls/
+│   ├── avatar.log
+│   ├── osc_core.log
+│   └── osc_filter.log
+│
+├── haptics/
+│   ├── intiface.log
+│   ├── owoRuntime.log
+│   └── pishock.log
+│
+└── webhook/
+    ├── docs-server.log
+    ├── external-hooks.log
+    ├── tiktok-hook.log
+    └── webhook-debug.log
+</code></pre>
+
+<hr />
+
+<h2>🔐 saved/userdata/</h2>
+
+<pre><code>saved/userdata/
+└── license.json
+</code></pre>
+
+<ul>
+  <li>Generated automatically</li>
+  <li>Required for startup</li>
+  <li>Regenerated if missing</li>
+</ul>
+
+<hr />
+
+<h2>🧠 Final Notes</h2>
+
+<ul>
+  <li>Everything persistent lives in <code>saved/</code></li>
+  <li>Logs are cleanly separated by subsystem</li>
+  <li>No silent failures</li>
+  <li>If something breaks, the logs will tell you why</li>
+</ul>
+
+</body>
+</html>

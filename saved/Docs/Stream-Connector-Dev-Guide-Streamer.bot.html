@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Stream-Connector-Dev-Guide-Streamer.bot</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body { font-family: system-ui, sans-serif; max-width: 980px; margin: 32px auto; padding: 0 16px; line-height: 1.55; }
+pre, code { background: #111; color: #eee; padding: 6px 8px; border-radius: 6px; }
+pre { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; }
+th, td { border: 1px solid #666; padding: 8px; }
+h1,h2,h3 { margin-top: 1.2em; }
+</style>
+</head>
+<body>
+<h1>🌐 Overview</h1>
+
+<p>Stream Connector includes a first-class Streamer.bot integration layer designed for <strong>low-latency, strongly-typed event handling</strong> with full safety controls.</p>
+
+<p>This system allows Streamer.bot actions to trigger internal engine logic, device execution, and automation workflows without exposing unsafe endpoints or requiring plugins.</p>
+
+<hr />
+
+<h2>🔌 Connection Details</h2>
+
+<table>
+<thead>
+<tr>
+  <th>Property</th>
+  <th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Protocol</td>
+  <td>WebSocket</td>
+</tr>
+<tr>
+  <td>Address</td>
+  <td>ws://127.0.0.1:8080</td>
+</tr>
+<tr>
+  <td>Direction</td>
+  <td>Local only</td>
+</tr>
+<tr>
+  <td>Source</td>
+  <td>Streamer.bot</td>
+</tr>
+<tr>
+  <td>Mode</td>
+  <td>Subscribe → Receive → Execute</td>
+</tr>
+<tr>
+  <td>Auth</td>
+  <td>None (localhost only)</td>
+</tr>
+</tbody>
+</table>
+
+<hr />
+
+<h2>📡 Subscription Model</h2>
+
+<p>Stream Connector subscribes to Streamer.bot custom events:</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;request&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Subscribe&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;streamconnector-sub&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;events&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;General&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;Custom&quot;</span><span class="p">]</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>Only <code>General → Custom</code> events are processed.</p>
+
+<hr />
+
+<h2>🧱 Event Model</h2>
+
+<p>All events follow a normalized structure:</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;provider&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;commandId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;string&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;context&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>These are parsed into strongly-typed objects before execution.</p>
+
+<hr />
+
+<h2>🧩 Supported Event Types</h2>
+
+<h3>External Hook Event</h3>
+
+<p>Used for generic external triggers.</p>
+
+<p>Fields:
+- provider
+- command_id
+- timestamp
+- user
+- message
+- source</p>
+
+<hr />
+
+<h3>Twitch Chat Event</h3>
+
+<p>Triggered on chat input.</p>
+
+<p>Fields:
+- user
+- message</p>
+
+<hr />
+
+<h3>Twitch Subscription Event</h3>
+
+<p>Fields:
+- user
+- tier
+- months
+- is_gift
+- gifter</p>
+
+<hr />
+
+<h3>Twitch Cheer Event</h3>
+
+<p>Fields:
+- user
+- bits
+- message</p>
+
+<hr />
+
+<h3>OBS Scene Event</h3>
+
+<p>Fields:
+- scene</p>
+
+<hr />
+
+<h3>Timer Event</h3>
+
+<p>Fields:
+- timer</p>
+
+<hr />
+
+<h3>Button Event</h3>
+
+<p>Fields:
+- button</p>
+
+<hr />
+
+<h2>🔁 Execution Flow</h2>
+
+<p>Streamer.bot<br />
+→ WebSocket<br />
+→ Event Validation<br />
+→ Typed Parser<br />
+→ Execution Router<br />
+→ Stream Connector Core  </p>
+
+<hr />
+
+<h2>⚙️ Execution Hook</h2>
+
+<p>All parsed events are routed through:</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="n">execute_external_hook</span><span class="p">(</span><span class="n">provider</span><span class="p">,</span> <span class="n">command_id</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<p>This allows:
+- Device control
+- Pattern execution
+- OSC output
+- External integrations</p>
+
+<hr />
+
+<h2>🔐 Security Model</h2>
+
+<p>✔ Local-only WebSocket<br />
+✔ No remote access<br />
+✔ No inbound ports<br />
+✔ Typed parsing only<br />
+✔ No eval or dynamic execution<br />
+✔ Safe failure handling  </p>
+
+<hr />
+
+<h2>🔁 Reconnection Handling</h2>
+
+<ul>
+<li>Automatic reconnect</li>
+<li>Exponential backoff</li>
+<li>Safe re-subscription</li>
+<li>No duplicate listeners</li>
+</ul>
+
+<hr />
+
+<h2>🛡️ Safety Guarantees</h2>
+
+<ul>
+<li>No code injection</li>
+<li>No remote execution</li>
+<li>No unsafe deserialization</li>
+<li>No telemetry</li>
+<li>No background listeners</li>
+</ul>
+
+<hr />
+
+<h2>✅ Summary</h2>
+
+<p>Streamer.bot integration is:</p>
+
+<p>✔ Safe<br />
+✔ Local<br />
+✔ Deterministic<br />
+✔ Typed<br />
+✔ Extensible<br />
+✔ Production-ready  </p>
+
+<hr />
+
+</body>
+</html>

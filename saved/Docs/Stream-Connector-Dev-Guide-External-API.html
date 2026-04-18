@@ -1,0 +1,310 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Stream Connector - External API</title>
+
+<style>
+:root { color-scheme: light dark; }
+
+body {
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  line-height: 1.55;
+  max-width: 1100px;
+  margin: 32px auto;
+  padding: 0 16px;
+}
+
+h1, h2, h3 { margin-top: 1.4em; }
+
+pre, code {
+  background: #111;
+  color: #eee;
+  padding: 6px 8px;
+  border-radius: 6px;
+}
+
+pre { overflow-x: auto; }
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 16px 0;
+}
+
+th, td {
+  border: 1px solid rgba(127,127,127,.35);
+  padding: 8px;
+}
+
+.docs-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+  align-items: center;
+  padding: 12px 14px;
+  margin-bottom: 20px;
+  border: 1px solid rgba(127,127,127,.35);
+  border-radius: 12px;
+  background: rgba(30,30,30,.6);
+  backdrop-filter: blur(6px);
+}
+
+.docs-nav a {
+  padding: 6px 10px;
+  border-radius: 8px;
+  text-decoration: none;
+  color: inherit;
+  border: 1px solid transparent;
+}
+
+.docs-nav a:hover {
+  background: rgba(100,100,100,.2);
+  border-color: rgba(127,127,127,.35);
+}
+
+.back-btn {
+  position: fixed;
+  bottom: 24px;
+  padding: 10px 14px;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 10px;
+  border: 1px solid rgba(127,127,127,.35);
+  background: rgba(20,20,20,.9);
+  color: #fff;
+  text-decoration: none;
+  backdrop-filter: blur(6px);
+  transition: all .15s ease;
+  z-index: 9999;
+}
+
+.back-home { left: 24px; }
+.back-top { right: 24px; }
+
+.back-btn:hover {
+  background: rgba(80,80,80,.9);
+  transform: translateY(-2px);
+}
+
+hr {
+  border: 0;
+  border-top: 1px solid rgba(127,127,127,.35);
+  margin: 28px 0;
+}
+</style>
+</head>
+
+<body>
+
+<nav class="docs-nav">
+  <strong>Docs</strong>
+  <a href="index.html">Home</a>
+  <a href="README.html">Overview</a>
+  <a href="Installation.html">Install</a>
+  <a href="Features.html">Features</a>
+  <a href="File-Structure.html">File Structure</a>
+  <a href="Security-&-Network-Architecture.html">Security</a>
+  <a href="Changelog.html">Changelog</a>
+</nav>
+
+<a href="index.html" class="back-btn back-home">⬅ Back</a>
+<a href="#top" class="back-btn back-top">⬆ Top</a>
+
+<h1 id="top">🌐 External Integration API</h1>
+
+<p>
+This is the **local-only control surface** for Stream Connector.
+No cloud. No bullshit. No magic.
+</p>
+
+<p>
+If something triggers an action from the outside world -  
+<strong>it comes through here.</strong>
+</p>
+
+<hr />
+
+<h2>🔌 Server Overview</h2>
+
+<table>
+<tr><th>Protocol</th><td>HTTP</td></tr>
+<tr><th>Host</th><td><code>127.0.0.1</code></td></tr>
+<tr><th>Port</th><td><code>8840</code></td></tr>
+<tr><th>Scope</th><td>Localhost only</td></tr>
+<tr><th>Auth</th><td>None (local trust boundary)</td></tr>
+<tr><th>CORS</th><td>Enabled (local tools)</td></tr>
+</table>
+
+<p>
+Nothing here is internet-facing.  
+Nothing opens inbound ports.  
+Nothing phones home.
+</p>
+
+<hr />
+
+<h2>📡 Available Endpoints</h2>
+
+<h3><code>GET /api/external/info</code></h3>
+<p>Returns basic metadata about the API.</p>
+
+<pre><code>{
+  "data": {
+    "name": "Stream Connector External API",
+    "author": "Vixenlicious",
+    "version": "x.y.z"
+  }
+}</code></pre>
+
+<hr />
+
+<h3><code>GET /api/external/list</code></h3>
+<p>Returns all registered external hooks.</p>
+
+<pre><code>{
+  "data": [
+    {
+      "provider": "example",
+      "commandId": "trigger_thing",
+      "description": "Example external hook"
+    }
+  ]
+}</code></pre>
+
+<hr />
+
+<h3><code>POST /api/external/exec</code></h3>
+<p>
+Executes a hook.  
+Supports JSON, form-data, and query strings.
+</p>
+
+<hr />
+
+<h2>🧩 Request Format</h2>
+
+<h3>JSON (recommended)</h3>
+
+<pre><code>{
+  "provider": "example_provider",
+  "commandId": "example_command",
+  "context": {
+    "user": "viewer123",
+    "message": "hello world"
+  }
+}</code></pre>
+
+<h3>Form / Query Fallback</h3>
+
+<pre><code>provider=example
+commandId=test</code></pre>
+
+<hr />
+
+<h2>🧠 Context Handling</h2>
+
+<ul>
+  <li>Passed through untouched</li>
+  <li>No evaluation</li>
+  <li>No execution</li>
+  <li>No serialization hacks</li>
+  <li>Safe structured data only</li>
+</ul>
+
+<p>
+It’s payload, not code.
+</p>
+
+<hr />
+
+<h2>⚙️ Execution Flow</h2>
+
+<pre><code>
+External Tool
+   ↓
+HTTP Request (localhost)
+   ↓
+Validation
+   ↓
+Execution Router
+   ↓
+Stream Connector Core
+</code></pre>
+
+<hr />
+
+<h2>🔐 Security Model</h2>
+
+<ul>
+  <li>✔ Localhost only</li>
+  <li>✔ No inbound exposure</li>
+  <li>✔ No eval / exec</li>
+  <li>✔ No telemetry</li>
+  <li>✔ Graceful failure</li>
+  <li>✔ Input normalization</li>
+</ul>
+
+<hr />
+
+<h2>🚨 Error Handling</h2>
+
+<p>
+Errors always return HTTP 200 to avoid breaking bots and automations.
+</p>
+
+<pre><code>{
+  "ok": false,
+  "error": "provider and commandId required"
+}</code></pre>
+
+<hr />
+
+<h2>🧪 Example (Python)</h2>
+
+<pre><code>
+import requests
+
+requests.post(
+  "http://127.0.0.1:8840/api/external/exec",
+  json={
+    "provider": "demo",
+    "commandId": "fire_effect",
+    "context": {"user": "viewer123"}
+  }
+)
+</code></pre>
+
+<hr />
+
+<h2>🛡️ Guarantees</h2>
+
+<ul>
+  <li>No remote control</li>
+  <li>No cloud traffic</li>
+  <li>No code execution</li>
+  <li>No telemetry</li>
+  <li>No silent failures</li>
+</ul>
+
+<hr />
+
+<h2>✅ Summary</h2>
+
+<p>
+This API exists for one reason:
+</p>
+
+<p><strong>Let external tools trigger controlled actions without breaking your system.</strong></p>
+
+<p>
+It is local.  
+It is predictable.  
+It does not do dumb shit.
+</p>
+
+<hr />
+
+</body>
+</html>

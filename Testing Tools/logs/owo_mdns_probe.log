@@ -1,0 +1,92 @@
+[2026-01-19 11:33:06] ======================================================================
+[2026-01-19 11:33:06] OWO NETWORK DISCOVERY STARTED
+[2026-01-19 11:33:06] Waiting for mDNS services…
+[2026-01-19 11:33:06] ======================================================================
+[2026-01-19 11:33:06] [SERVICE TYPE] _googlecast._tcp.local.
+[2026-01-19 11:33:06] [SERVICE TYPE] _display._tcp.local.
+[2026-01-19 11:33:06] [SERVICE TYPE] _spotify-connect._tcp.local.
+[2026-01-19 11:33:06] [SERVICE TYPE] _airplay._tcp.local.
+[2026-01-19 11:33:06] [SERVICE TYPE] _googlezone._tcp.local.
+[2026-01-19 11:33:06] [SERVICE TYPE] _trel._udp.local.
+[2026-01-19 11:33:06] [SERVICE TYPE] _meshcop._udp.local.
+[2026-01-19 11:33:06] [SERVICE TYPE] _googcrossdevice._tcp.local.
+[2026-01-19 11:33:06] [INSTANCE FOUND] 9528d5ec-7265-77b4-7f87-b2fd2d827809._googlezone._tcp.local.
+[2026-01-19 11:33:06]   └─ DETAILS
+[2026-01-19 11:33:06]      Service : _googlezone._tcp.local.
+[2026-01-19 11:33:06]      Name    : 9528d5ec-7265-77b4-7f87-b2fd2d827809._googlezone._tcp.local.
+[2026-01-19 11:33:06]      Host    : 9528d5ec-7265-77b4-7f87-b2fd2d827809.local.
+[2026-01-19 11:33:06]      Port    : 10001
+[2026-01-19 11:33:06]      IPs     : ['10.0.0.100']
+[2026-01-19 11:33:06]      TXT     : {b'id': b'3950C007C1A2797434A81DF8798158EF', b'UDS': None, b'CGS': None}
+[2026-01-19 11:33:06] [INSTANCE FOUND] Google Nest Hub (ce99)._meshcop._udp.local.
+[2026-01-19 11:33:06]   └─ DETAILS
+[2026-01-19 11:33:06]      Service : _meshcop._udp.local.
+[2026-01-19 11:33:06]      Name    : Google Nest Hub (ce99)._meshcop._udp.local.
+[2026-01-19 11:33:06] [INSTANCE FOUND] 5ecf5f1d5994ce99._trel._udp.local.
+[2026-01-19 11:33:06] [INSTANCE FOUND] d4191c46-0a96-f134-ec7b-73d7ea994b3c._googlezone._tcp.local.
+[2026-01-19 11:33:06]      Host    : fuchsia-24e5-0fd9-a1d7.local.
+[2026-01-19 11:33:06]      Port    : 49154
+[2026-01-19 11:33:06]   └─ DETAILS
+[2026-01-19 11:33:06]   └─ DETAILS
+[2026-01-19 11:33:06]      IPs     : ['10.0.0.101']
+[2026-01-19 11:33:06]      Service : _trel._udp.local.
+[2026-01-19 11:33:06]      Service : _googlezone._tcp.local.
+[2026-01-19 11:33:06]      TXT     : {b'vcd': b'2B6EC7225EB37176D00505A974134B35', b'id': b'+n\xc7"^\xb3qv\xd0\x05\x05\xa9t\x13K5', b'vo': b'|\xd9\\', b'vvo': b'7CD95C', b'vxp': b'9a50b5772237834b', b'vat': b'000065d90f63bad3', b'nn': b'NEST-PAN-75E2', b'xp': b'\x9aP\xb5w"7\x83K', b'tv': b'1.3.0', b'xa': b'^\xcf_\x1dY\x94\xce\x99', b'sb': b'\x00\x00\x0f\xb1', b'pt': b'\x05\xe7=\xb3', b'at': b'\x00\x00e\xd9\x0fc\xba\xd3', b'sq': b'S', b'bb': b'\xf0\xbf', b'dn': b'DefaultDomain', b'vn': b'Google Inc.', b'mn': b'Google Nest Hub', b'rv': b'1'}
+[2026-01-19 11:33:06]      Name    : 5ecf5f1d5994ce99._trel._udp.local.
+[2026-01-19 11:33:06]      Name    : d4191c46-0a96-f134-ec7b-73d7ea994b3c._googlezone._tcp.local.
+[2026-01-19 11:33:06]      Host    : fuchsia-24e5-0fd9-a1d7.local.
+[2026-01-19 11:33:06]      Host    : fuchsia-24e5-0fd9-a1d7.local.
+[2026-01-19 11:33:06]      Port    : 42828
+[2026-01-19 11:33:06]      Port    : 10001
+[2026-01-19 11:33:06]      IPs     : ['10.0.0.101']
+[2026-01-19 11:33:06]      IPs     : ['10.0.0.101']
+[2026-01-19 11:33:06]      TXT     : {b'xa': b'^\xcf_\x1dY\x94\xce\x99', b'xp': b'\x9aP\xb5w"7\x83K'}
+[2026-01-19 11:33:06]      TXT     : {b'id': b'2B6EC7225EB37176D00505A974134B35', b'UDS': None, b'CGS': None}
+[2026-01-19 11:33:06] [INSTANCE FOUND] 32" TV._display._tcp.local.
+
+[2026-01-19 11:33:06] [INSTANCE FOUND] cf2feeb3-a21e-5420-bb08-51d30088e21f._spotify-connect._tcp.local.
+[2026-01-19 11:33:06]   └─ DETAILS
+[2026-01-19 11:33:06]   └─ DETAILS
+[2026-01-19 11:33:06]   └─ DETAILS
+[2026-01-19 11:33:06]      Service : _airplay._tcp.local.
+[2026-01-19 11:33:06]      Service : _display._tcp.local.
+[2026-01-19 11:33:06]      Service : _spotify-connect._tcp.local.
+[2026-01-19 11:33:06]      Name    : 32in TV._airplay._tcp.local.
+[2026-01-19 11:33:06]      Name    : 32" TV._display._tcp.local.
+[2026-01-19 11:33:06]      Name    : cf2feeb3-a21e-5420-bb08-51d30088e21f._spotify-connect._tcp.local.
+[2026-01-19 11:33:06]      Host    : YK00PT691998.local.
+[2026-01-19 11:33:06]      Host    : YK00PT691998.local.
+[2026-01-19 11:33:06]      Host    : YK00PT691998.local.
+[2026-01-19 11:33:06]      Port    : 7000
+[2026-01-19 11:33:06]      Port    : 7250
+[2026-01-19 11:33:06]      Port    : 43895
+[2026-01-19 11:33:06]      IPs     : ['10.0.0.76']
+[2026-01-19 11:33:06]      IPs     : ['10.0.0.76']
+[2026-01-19 11:33:06]      IPs     : ['10.0.0.76']
+[2026-01-19 11:33:06]      TXT     : {b'acl': b'0', b'deviceid': b'8E:BA:C2:58:94:5C', b'features': b'0x7F8AD0,0x38BCF46', b'fex': b'0Ip/AEbPiwNACA', b'rsf': b'0x3', b'fv': b'p20.15.14.3321', b'at': b'0x1', b'flags': b'0x244', b'model': b'8220X', b'integrator': b'Roku', b'manufacturer': b'Hisense', b'serialNumber': b'011c038c-565e-54e6-807e-35998e6e5b45', b'protovers': b'1.1', b'srcvers': b'377.40.00', b'pi': b'8E:BA:C2:58:94:5C', b'psi': b'00000000-0000-0000-0000-8EBAC258945C', b'gid': b'00000000-0000-0000-0000-8EBAC258945C', b'gcgl': b'0', b'pk': b'b7214a5d4551f402de9b7ba859e2aacd4afd1177ae0a26a5b8ddd70f16488173'}
+[2026-01-19 11:33:06]      TXT     : {b'container_id': b'{119A1243-FDAB-4F52-8DC9-09E2327B99D2}'}
+[2026-01-19 11:33:06]      TXT     : {b'CPath': b'/zc'}
+[2026-01-19 11:33:06] [INSTANCE FOUND] Google-Home-Mini-9528d5ec726577b47f87b2fd2d827809._googlecast._tcp.local.
+[2026-01-19 11:33:06]   └─ DETAILS
+[2026-01-19 11:33:06]      Service : _googlecast._tcp.local.
+[2026-01-19 11:33:06]      Name    : Google-Home-Mini-9528d5ec726577b47f87b2fd2d827809._googlecast._tcp.local.
+[2026-01-19 11:33:06]      Host    : 9528d5ec-7265-77b4-7f87-b2fd2d827809.local.
+[2026-01-19 11:33:06]      Port    : 8009
+[2026-01-19 11:33:06]      IPs     : ['10.0.0.100']
+[2026-01-19 11:33:06] [INSTANCE FOUND] 2B6EC7225EB37176D00505A974134B35._googcrossdevice._tcp.local.
+[2026-01-19 11:33:06]      TXT     : {b'id': b'9528d5ec726577b47f87b2fd2d827809', b'cd': b'3950C007C1A2797434A81DF8798158EF', b'rm': b'33F568D486711D87', b've': b'05', b'md': b'Google Home Mini', b'ic': b'/setup/icon.png', b'fn': b'Living Room speaker', b'ca': b'199172', b'st': b'0', b'bs': b'FA8FCA6A27F3', b'nf': b'1', b'rs': None}
+[2026-01-19 11:33:06] [INSTANCE FOUND] Google-Nest-Hub-d4191c460a96f134ec7b73d7ea994b3c._googlecast._tcp.local.
+[2026-01-19 11:33:06]   └─ DETAILS
+[2026-01-19 11:33:06]      Service : _googcrossdevice._tcp.local.
+[2026-01-19 11:33:06]   └─ DETAILS
+[2026-01-19 11:33:06]      Name    : 2B6EC7225EB37176D00505A974134B35._googcrossdevice._tcp.local.
+[2026-01-19 11:33:06]      Service : _googlecast._tcp.local.
+[2026-01-19 11:33:06]      Host    : fuchsia-24e5-0fd9-a1d7.local.
+[2026-01-19 11:33:06]      Name    : Google-Nest-Hub-d4191c460a96f134ec7b73d7ea994b3c._googlecast._tcp.local.
+[2026-01-19 11:33:06]      Port    : 35634
+[2026-01-19 11:33:06]      Host    : fuchsia-24e5-0fd9-a1d7.local.
+[2026-01-19 11:33:06]      IPs     : ['10.0.0.101']
+[2026-01-19 11:33:06]      Port    : 8009
+[2026-01-19 11:33:06]      TXT     : {b'rp': b'50', b'ts': b'3', b'id': b'2B6EC7225EB37176D00505A974134B35'}
+[2026-01-19 11:33:06]      IPs     : ['10.0.0.101']
+[2026-01-19 11:33:06]      TXT     : {b'id': b'd4191c460a96f134ec7b73d7ea994b3c', b'cd': b'2B6EC7225EB37176D00505A974134B35', b'rm': b'C008E461DE78DBAC', b've': b'05', b'md': b'Google Nest Hub', b'ic': b'/setup/icon.png', b'fn': b'Bedroom display', b'ca': b'231941', b'st': b'0', b'bs': b'FA8FCA589B8A', b'nf': b'1', b'rs': None}

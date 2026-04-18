@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Security & Licensing</title>
+
+  <style>
+    :root {
+      color-scheme: light dark;
+      --accent: #ff3b3b;
+      --border: rgba(127,127,127,.35);
+    }
+
+    body {
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      line-height: 1.6;
+      max-width: 980px;
+      margin: 32px auto;
+      padding: 0 18px;
+    }
+
+    h1, h2 {
+      margin-top: 2em;
+      border-left: 4px solid var(--accent);
+      padding-left: 12px;
+    }
+
+    ul { margin-left: 1.2em; }
+    li { margin: 0.4em 0; }
+
+    hr {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 32px 0;
+    }
+
+    /* Nav */
+    .docs-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 12px;
+      align-items: center;
+      padding: 12px 14px;
+      margin-bottom: 20px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: rgba(30,30,30,0.6);
+      backdrop-filter: blur(6px);
+    }
+
+    .docs-nav a {
+      padding: 6px 10px;
+      border-radius: 8px;
+      color: inherit;
+      border: 1px solid transparent;
+      text-decoration: none;
+      transition: all 0.15s ease;
+    }
+
+    .docs-nav a:hover {
+      background: rgba(100,100,100,0.2);
+      border-color: var(--border);
+    }
+
+    .back-btn {
+      position: fixed;
+      bottom: 24px;
+      padding: 10px 14px;
+      font-size: 14px;
+      font-weight: 700;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: rgba(20,20,20,0.9);
+      color: #fff;
+      text-decoration: none;
+      backdrop-filter: blur(6px);
+      transition: all 0.15s ease;
+      z-index: 9999;
+    }
+
+    .back-home { left: 24px; }
+    .back-top { right: 24px; }
+
+    .back-btn:hover {
+      background: rgba(80,80,80,0.9);
+      transform: translateY(-2px);
+    }
+  </style>
+</head>
+
+<body>
+
+<nav class="docs-nav">
+  <a href="index.html">Home</a>
+  <a href="README.html">Overview</a>
+  <a href="Installation.html">Install</a>
+  <a href="Features.html">Features</a>
+  <a href="Additional-Uses.html">Additional Uses</a>
+  <a href="Changelog.html">Changelog</a>
+  <a href="Upcoming-Features.html">Upcoming</a>
+  <a href="Extended-Features-Key.html">Extended</a>
+  <a href="File-Structure.html">File Structure</a>
+  <a href="Security-&-Licensing.html">Security</a>
+  <a href="Security-&-Network-Architecture.html">Network</a>
+  <a href="Stream-Connector-Dev-Guide-External-API.html">Dev: API</a>
+  <a href="Stream-Connector-Dev-Guide-Streamerbot.html">Dev: Streamer.bot</a>
+  <a href="FAQ.html">FAQ</a>
+</nav>
+
+<a href="#top" class="back-btn back-top">⬆ Back to Top</a>
+<a href="index.html" class="back-btn back-home">⬅ Home</a>
+
+<h1 id="top">🔓 Security & Licensing</h1>
+
+<p>
+Let’s clear the air immediately.
+</p>
+
+<p>
+There is no licensing system anymore.
+No keys. No tiers. No activations. No servers deciding what you’re “allowed” to do.
+</p>
+
+<p>
+This project is <strong>free, local, and yours to control</strong>.
+</p>
+
+<hr />
+
+<h2>📜 License Model</h2>
+
+<p>
+Stream Connector operates under a permissive, MIT-style model.
+</p>
+
+<ul>
+  <li>✔ Free to use</li>
+  <li>✔ Free to modify</li>
+  <li>✔ Free to redistribute</li>
+  <li>✔ Free for personal or commercial projects</li>
+</ul>
+
+<p>
+No DRM.  
+No paywalls.  
+No feature gates.
+</p>
+
+<p>
+If you have the files, you have the software.
+</p>
+
+<hr />
+
+<h2>🔐 Security Philosophy</h2>
+
+<p>
+Security here is boring by design - because boring security is reliable security.
+</p>
+
+<ul>
+  <li>Local execution only</li>
+  <li>No background services</li>
+  <li>No cloud dependency</li>
+  <li>No telemetry</li>
+  <li>No forced updates</li>
+</ul>
+
+<p>
+Nothing phones home.  
+Nothing runs without you launching it.  
+Nothing hides what it’s doing.
+</p>
+
+<hr />
+
+<h2>🌐 Network & Runtime Behavior</h2>
+
+<ul>
+  <li>Explicit WebSocket connections only</li>
+  <li>No external listeners unless enabled</li>
+  <li>All ports and endpoints are visible</li>
+  <li>Fails closed, not open</li>
+</ul>
+
+<p>
+If it’s talking to something, you configured it.
+</p>
+
+<p>
+For full technical breakdown, see:
+<br />
+<a href="Security-&-Network-Architecture.html">Security & Network Architecture</a>
+</p>
+
+<hr />
+
+<h2>🛡️ Antivirus & Trust</h2>
+
+<p>
+All builds are scanned and validated through:
+</p>
+
+<ul>
+  <li>✔ Windows Defender cloud reputation checks</li>
+  <li>✔ Standard executable trust heuristics</li>
+  <li>✔ No packing, no obfuscation</li>
+</ul>
+
+<p>
+There is no telemetry submission.
+There is no remote scanning.
+There is no hidden updater.
+</p>
+
+<p>
+If your antivirus complains, it’s because this software:
+</p>
+
+<ul>
+  <li>Controls hardware</li>
+  <li>Opens sockets</li>
+  <li>Does real work</li>
+</ul>
+
+<p>
+Not because it’s malicious.
+</p>
+
+<hr />
+
+<h2>🚫 What This Does NOT Do</h2>
+
+<ul>
+  <li>No data collection</li>
+  <li>No analytics</li>
+  <li>No accounts</li>
+  <li>No cloud login</li>
+  <li>No remote kill switches</li>
+</ul>
+
+<p>
+You own your install.
+You own your data.
+You own the consequences.
+</p>
+
+<hr />
+
+<h2>🧠 Final Word</h2>
+
+<p>
+This project exists because people wanted tools -
+not permission slips.
+</p>
+
+<p>
+You get the full system.
+You get full control.
+You get full responsibility.
+</p>
+
+<p>
+If that makes you uncomfortable, that’s fine.
+</p>
+
+<p>
+If it makes you excited -
+</p>
+
+<p><strong>Welcome. You’re exactly who this was built for.</strong></p>
+
+</body>
+</html>

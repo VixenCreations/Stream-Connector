@@ -1,0 +1,88 @@
+F:\VRChat Extra Toys\Stream Connector Test\Testing Tools>TestIntiface.py
+[INTIFACE][INFO] Connecting to ws://127.0.0.1:12345
+[INTIFACE][INFO] Connected to Intiface Central
+[INTIFACE][DEBUG] Handshake sent
+[INTIFACE][DEBUG] DATA: {
+  "RequestServerInfo": {
+    "Id": 1,
+    "ClientName": "StreamConnector",
+    "MessageVersion": 3
+  }
+}
+[INTIFACE][INFO] Handshake complete with Intiface
+[INTIFACE][INFO] DATA: {
+  "Id": 1,
+  "MessageVersion": 3,
+  "MaxPingTime": 0,
+  "ServerName": "Intiface Server"
+}
+[INTIFACE][DEBUG] RequestDeviceList sent
+[INTIFACE][DEBUG] DATA: {
+  "RequestDeviceList": {
+    "Id": 2
+  }
+}
+[INTIFACE][DEBUG] StartScanning sent
+[INTIFACE][DEBUG] DATA: {
+  "StartScanning": {
+    "Id": 3
+  }
+}
+[INTIFACE][INFO] Received device list (1 devices)
+[INTIFACE][INFO] Registered device [1] Lovense Hush
+[INTIFACE][INFO] DATA: {
+  "index": 1,
+  "name": "Lovense Hush",
+  "raw": {
+    "DeviceIndex": 1,
+    "DeviceName": "Lovense Hush",
+    "DeviceMessages": {
+      "ScalarCmd": [
+        {
+          "FeatureDescriptor": "",
+          "ActuatorType": "Vibrate",
+          "StepCount": 20
+        }
+      ],
+      "SensorReadCmd": [
+        {
+          "FeatureDescriptor": "Battery Level",
+          "SensorType": "Battery",
+          "SensorRange": [
+            [
+              0,
+              100
+            ]
+          ]
+        }
+      ],
+      "StopDeviceCmd": {}
+    }
+  },
+  "features": {
+    "ScalarCmd": [
+      {
+        "FeatureDescriptor": "",
+        "ActuatorType": "Vibrate",
+        "StepCount": 20
+      }
+    ],
+    "SensorReadCmd": [
+      {
+        "FeatureDescriptor": "Battery Level",
+        "SensorType": "Battery",
+        "SensorRange": [
+          [
+            0,
+            100
+          ]
+        ]
+      }
+    ],
+    "StopDeviceCmd": {}
+  }
+}
+[INTIFACE][DEBUG] Server OK
+[INTIFACE][DEBUG] DATA: {
+  "Id": 3
+}

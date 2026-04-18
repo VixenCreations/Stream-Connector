@@ -1,0 +1,21 @@
+[2026-01-19 11:38:40] ======================================================================
+[2026-01-19 11:38:40] OWO NETWORK PROBE — FULL TCP / UDP / PROCESS DISCOVERY
+[2026-01-19 11:38:40] Start MyOWO now...
+[2026-01-19 11:38:40] ======================================================================
+[2026-01-19 11:38:40] [SERVICE FOUND] _services._dns-sd._udp.local. -> _googlecast._tcp.local.
+[2026-01-19 11:38:40] [ERROR] 
+[2026-01-19 11:38:40] [SERVICE FOUND] _services._dns-sd._udp.local. -> _googlezone._tcp.local.
+[2026-01-19 11:38:40] [ERROR] 
+[2026-01-19 11:38:40] [SERVICE FOUND] _services._dns-sd._udp.local. -> _display._tcp.local.
+[2026-01-19 11:38:40] [ERROR] 
+[2026-01-19 11:38:40] [SERVICE FOUND] _services._dns-sd._udp.local. -> _spotify-connect._tcp.local.
+[2026-01-19 11:38:40] [ERROR] 
+[2026-01-19 11:38:40] [SERVICE FOUND] _services._dns-sd._udp.local. -> _airplay._tcp.local.
+[2026-01-19 11:38:40] [ERROR] 
+[2026-01-19 11:38:40] [SERVICE FOUND] _services._dns-sd._udp.local. -> _trel._udp.local.
+[2026-01-19 11:38:40] [ERROR] 
+[2026-01-19 11:38:40] [SERVICE FOUND] _services._dns-sd._udp.local. -> _meshcop._udp.local.
+[2026-01-19 11:38:40] [ERROR] 
+[2026-01-19 11:38:40] [SERVICE FOUND] _services._dns-sd._udp.local. -> _googcrossdevice._tcp.local.
+[2026-01-19 11:38:40] [ERROR] 
+[2026-01-19 11:38:55] Stopping probe.

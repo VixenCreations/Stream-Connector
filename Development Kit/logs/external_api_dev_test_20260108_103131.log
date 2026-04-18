@@ -1,0 +1,174 @@
+2026-01-08 10:31:31 | OK    | - | === Stream Connector External API Developer Reference Test Suite START ===
+2026-01-08 10:31:31 | INFO  | - | Log File: F:\VRChat Extra Toys\Stream Connector Test\logs\external_api_dev_test_20260108_103131.log
+2026-01-08 10:31:31 | INFO  | b51868289c6341269c88350b80ba6bcc | Testing /api/external/info endpoint
+2026-01-08 10:31:31 | INFO  | b51868289c6341269c88350b80ba6bcc | Status Code: 200
+2026-01-08 10:31:31 | OK    | b51868289c6341269c88350b80ba6bcc | API Info Response:
+    {
+      "data": {
+        "author": "@Vixenlicious",
+        "name": "Stream Connector External API",
+        "version": "6.2.0"
+      }
+    }
+2026-01-08 10:31:31 | INFO  | e3a5e415408043b7841335346996e935 | Testing /api/external/list endpoint
+2026-01-08 10:31:31 | INFO  | e3a5e415408043b7841335346996e935 | Status Code: 200
+2026-01-08 10:31:31 | OK    | e3a5e415408043b7841335346996e935 | Registered External Hooks:
+    {
+      "data": [
+        {
+          "commandId": "club wear",
+          "description": "Chain: Club wear",
+          "name": "Club wear",
+          "provider": "streamconnector"
+        },
+        {
+          "commandId": "latex wear",
+          "description": "Chain: Latex Wear",
+          "name": "Latex Wear",
+          "provider": "streamconnector"
+        },
+        {
+          "commandId": "christmas",
+          "description": "Chain: Christmas",
+          "name": "Christmas",
+          "provider": "streamconnector"
+        },
+        {
+          "commandId": "test",
+          "description": "Chain: test",
+          "name": "test",
+          "provider": "streamconnector"
+        }
+      ]
+    }
+2026-01-08 10:31:31 | INFO  | f4b97741570e4f7c91affbe9e656b5b9 | Testing /api/external/exec (POST)
+2026-01-08 10:31:31 | INFO  | f4b97741570e4f7c91affbe9e656b5b9 | Sending Payload:
+    {
+      "provider": "streamconnector",
+      "commandId": "test",
+      "request_id": "f4b97741570e4f7c91affbe9e656b5b9",
+      "context": {
+        "user": "Vixenlicious",
+        "source": "python_reference_test",
+        "note": "auto-registered chain test",
+        "timestamp": 1767889891.9232366
+      }
+    }
+2026-01-08 10:31:31 | INFO  | f4b97741570e4f7c91affbe9e656b5b9 | Status Code: 200
+2026-01-08 10:31:31 | OK    | f4b97741570e4f7c91affbe9e656b5b9 | Execution Response:
+    {
+      "ok": true
+    }
+2026-01-08 10:31:31 | INFO  | eede7aad1f9e4120996b24124517b0df | Testing /api/external/exec (GET)
+2026-01-08 10:31:31 | INFO  | eede7aad1f9e4120996b24124517b0df | Sending Params:
+    {
+      "provider": "streamconnector",
+      "commandId": "test_get",
+      "user": "Vixenlicious",
+      "source": "python_reference_test",
+      "request_id": "eede7aad1f9e4120996b24124517b0df"
+    }
+2026-01-08 10:31:31 | INFO  | eede7aad1f9e4120996b24124517b0df | Status Code: 200
+2026-01-08 10:31:31 | OK    | eede7aad1f9e4120996b24124517b0df | Execution Response:
+    {
+      "ok": false
+    }
+2026-01-08 10:31:31 | INFO  | 821ac8316ef34330ba7be7300b494e92 | Testing invalid payload handling
+2026-01-08 10:31:31 | INFO  | 821ac8316ef34330ba7be7300b494e92 | Sending Bad Payload:
+    {
+      "provider": "streamconnector",
+      "request_id": "821ac8316ef34330ba7be7300b494e92"
+    }
+2026-01-08 10:31:31 | INFO  | 821ac8316ef34330ba7be7300b494e92 | Status Code: 200
+2026-01-08 10:31:31 | WARN  | 821ac8316ef34330ba7be7300b494e92 | Error Response:
+    {
+      "error": "provider and commandId required",
+      "ok": false
+    }
+2026-01-08 10:31:31 | INFO  | - | Testing command chain burst
+2026-01-08 10:31:31 | INFO  | 147c992adeac420aa4ee5ba1d6a70434 | Dispatching Chain Step 1:
+    {
+      "provider": "streamconnector",
+      "commandId": "chain_step_1",
+      "request_id": "147c992adeac420aa4ee5ba1d6a70434",
+      "context": {
+        "user": "Vixenlicious",
+        "source": "python_chain_test",
+        "step": 1,
+        "note": "sequential chain test"
+      }
+    }
+2026-01-08 10:31:31 | INFO  | 147c992adeac420aa4ee5ba1d6a70434 | Status Code: 200
+2026-01-08 10:31:31 | OK    | 147c992adeac420aa4ee5ba1d6a70434 | Chain Step 1 Response:
+    {
+      "ok": false
+    }
+2026-01-08 10:31:32 | INFO  | 9df4a164c92847088329732b24bb2085 | Dispatching Chain Step 2:
+    {
+      "provider": "streamconnector",
+      "commandId": "chain_step_2",
+      "request_id": "9df4a164c92847088329732b24bb2085",
+      "context": {
+        "user": "Vixenlicious",
+        "source": "python_chain_test",
+        "step": 2,
+        "note": "sequential chain test"
+      }
+    }
+2026-01-08 10:31:32 | INFO  | 9df4a164c92847088329732b24bb2085 | Status Code: 200
+2026-01-08 10:31:32 | OK    | 9df4a164c92847088329732b24bb2085 | Chain Step 2 Response:
+    {
+      "ok": false
+    }
+2026-01-08 10:31:32 | INFO  | 4ff563559fb8449ab37356e1e3670526 | Dispatching Chain Step 3:
+    {
+      "provider": "streamconnector",
+      "commandId": "chain_step_3",
+      "request_id": "4ff563559fb8449ab37356e1e3670526",
+      "context": {
+        "user": "Vixenlicious",
+        "source": "python_chain_test",
+        "step": 3,
+        "note": "sequential chain test"
+      }
+    }
+2026-01-08 10:31:32 | INFO  | 4ff563559fb8449ab37356e1e3670526 | Status Code: 200
+2026-01-08 10:31:32 | OK    | 4ff563559fb8449ab37356e1e3670526 | Chain Step 3 Response:
+    {
+      "ok": false
+    }
+2026-01-08 10:31:32 | INFO  | 04f1480c013f4ad4a35db7a26fa4f1c9 | Dispatching Chain Step 4:
+    {
+      "provider": "streamconnector",
+      "commandId": "chain_step_4",
+      "request_id": "04f1480c013f4ad4a35db7a26fa4f1c9",
+      "context": {
+        "user": "Vixenlicious",
+        "source": "python_chain_test",
+        "step": 4,
+        "note": "sequential chain test"
+      }
+    }
+2026-01-08 10:31:32 | INFO  | 04f1480c013f4ad4a35db7a26fa4f1c9 | Status Code: 200
+2026-01-08 10:31:32 | OK    | 04f1480c013f4ad4a35db7a26fa4f1c9 | Chain Step 4 Response:
+    {
+      "ok": false
+    }
+2026-01-08 10:31:32 | INFO  | 89127189197246a2a3ab95161dd98eda | Dispatching Chain Step 5:
+    {
+      "provider": "streamconnector",
+      "commandId": "chain_step_5",
+      "request_id": "89127189197246a2a3ab95161dd98eda",
+      "context": {
+        "user": "Vixenlicious",
+        "source": "python_chain_test",
+        "step": 5,
+        "note": "sequential chain test"
+      }
+    }
+2026-01-08 10:31:33 | INFO  | 89127189197246a2a3ab95161dd98eda | Status Code: 200
+2026-01-08 10:31:33 | OK    | 89127189197246a2a3ab95161dd98eda | Chain Step 5 Response:
+    {
+      "ok": false
+    }
+2026-01-08 10:31:33 | OK    | - | === Test Suite Complete: External API layer is healthy ===
